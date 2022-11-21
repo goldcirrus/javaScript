@@ -1,0 +1,25 @@
+<script src="https://cs.tru.ca/~mlee/T3PO/t3po_rev3.lib.js"></script>
+
+<div>
+    x = <input id='x'><br>
+    x! = <span id='fact'></span><br>
+</div>
+
+<script>
+//E5
+    var models =  {x:{}};  //create the models that is an objeccct has properties 'x' as an objec
+
+    var inputs = [{id:'x', model:['x'], event:['keyup']}];
+
+    var outputs = [{id:'fact', model:['x'], expr:'factorial(T3PO.x)'}];
+
+    var t3po = new Tru3PO(models, inputs, outputs);
+
+    function factorial(n) {
+        let f = 1;
+        for (let i = 1; i <= n; i++)
+            f = f * i;
+        return f;
+    }
+
+</script>

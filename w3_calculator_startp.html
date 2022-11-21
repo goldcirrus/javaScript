@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        #menu {
+            display: block;
+            position: absolute;
+            height: 25px;
+            width: 120px;
+            /*
+            border-style: solid;
+            border-width: 2px;
+            top: 100px;
+            left: 100px;
+            */
+            z-index: 999999;
+        }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cs.tru.ca/~mlee/T3PO/t3po_rev3.lib.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+
+    <div>
+        <h1>Calculator - T3PO</h1>
+        <div style='margin:20px'>
+            x = <input id='ix'></br>
+            y = <input id='iy'></br>
+            x + y = <span id='plus'></span><br>
+            x - y = <span id='minus'></span><br>
+            x * y = <span id='multiply'></span><br>
+            x / y = <span id='divide'></span><br>
+            x! = <span id='factorial'></span></br>
+        </div>
+    </div>
+    <script>
+        var models = {'x':{}, 'y':{}};  //create the data models that is an objeccct has properties 'x' and 'y' as objects
+		
+        var inputs = [{id:'ix', model:['x'], event:['keyup']}, {id:'iy', model:['y'],event:['keyup']}];
+		             //bind HTML view input:id='ix' to models property:['x'] geting 2-way binding via event:['keyup']
+	                 //bind HTML view input:id='iy' to models property:['y'] geting 2-way binding via event:['keyup']
+		
+        var outputs = [{id:'plus', model:['x', 'y'], expr:'Number(T3PO.x) + Number(T3PO.y)'},   // element object: bind HTML view span:id='plus' to models property['x' and 'y'], with data value expression as 'expr' contains model's data variable 'x' value as T3PO.x and 'y' value as T3PO.y
+                       {id:'minus', model:['x','y'], expr:'Number(T3PO.x) - Number(T3PO.y)'},   // element object: bind HTML view span:id='minus' to models property['x' and 'y'], with data value expression as 'expr' contains model's data variable 'x' value as T3PO.x and 'y' value as T3PO.y
+                       {id:'multiply', model:['x','y'], expr:'Number(T3PO.x)*Number(T3PO.y)'},  // element object: bind HTML view span:id='multiply' to models property['x' and 'y'], with data value expression as 'expr' contains model's data variable 'x' value as T3PO.x and 'y' value as T3PO.y
+                       {id:'divide', model:['x','y'], expr:'Number(T3PO.x)/Number(T3PO.y)'},    // element object: bind HTML view span:id='divide' to models property['x' and 'y'], with data value expression as 'expr' contains model's data variable 'x' value as T3PO.x and 'y' value as T3PO.y
+                       {id:'factorial', model:['x'], expr:'factorial(T3PO.x)'}                  // element object: bind HTML view span:id='factorial' to models property['x'], with data value expression as 'expr' contains dodel's data variable 'x' value as T3PO.x
+                      ];
+			
+        function factorial(x) {
+            let f = 1;
+            for (let i = 1; i <= x; i++)
+                f = f * i;
+            return f;
+        }
+		
+        t3po = new Tru3PO(models, inputs, outputs);   // Create the Tru3PO object
+    </script>
+    
+
+----------------------------------------------------------------------------------
+    <div ng-app='myApp' ng-controller='myCtrl'>
+        <h1>Calculator - AngularJS</h1>
+        <div style='margin:20px'>
+            x = <input ng-model='x'></br>
+            y = <input ng-model='y'></br>
+			
+            x + y = {{addition(x,y);}}<br>
+			x - y = <span ng-bind='subtraction(x,y)'></span><br>
+            x * y = <span>{{x*y}}</span><br>
+            x / y = <span>{{x/y}}</span><br>
+            x! = <span>{{factors(x);}}</span></br>
+        </div>
+    </div>
+	
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl',function($scope){
+		    $scope.x;     //create data variable x
+			$scope.y;     //create data variable y
+			$scope.addition=function(x,y){return Number(x)+Number(y);};   //create data function addition(x,y)
+			$scope.subtraction=function(x,y){return Number(x)-Number(y)};
+			$scope.factors=function(x){
+			                    let i = 1;
+                                for (let j = 1; j <= x; j++)
+                                i = i * j;
+                                return i;
+			              };
+		});
+    </script>
+</body>

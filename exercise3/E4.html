@@ -1,0 +1,18 @@
+<script src="https://cs.tru.ca/~mlee/T3PO/t3po_rev3.lib.js"></script>
+<div>
+    x = <input id='x'><br>
+    y = <input id='y'><br>
+    x + y = <span id='plus'></span><br>
+</div>
+
+<script>
+//E4
+
+    var models = {x:{}, y:{}};
+
+    var inputs = [{id:'x', model:['x'], event:['keyup']}, {id:'y', model:['y'], event:['keyup']}];
+
+    var outputs = [{id:'plus', model:['x', 'y'], expr:'Number(T3PO.x) + Number(T3PO.y)'}];
+
+    var t3po = new Tru3PO(models, inputs, outputs);
+</script>
