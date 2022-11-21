@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Count numbers: <output id="result"></output></p>
+<button onclick="startWorker()">Start Worker</button> 
+<button onclick="stopWorker()">Stop Worker</button>
+
+<p><strong>Note:</strong> Internet Explorer 9 and earlier versions do not support Web Workers.</p>
+<p><a href="https://www.html5rocks.com/en/tutorials/workers/basics/">https://www.html5rocks.com/en/tutorials/workers/basics/</p>
+
+<script>
+var w;
+
+function startWorker() {
+  var worker = new Worker('demo.js');
+
+  worker.addEventListener('message', function(e) {
+    console.log('Worker said: ', e.data);
+  }, false);
+
+  worker.postMessage('Hello World'); // Send data to our worker.
+}
+
+function stopWorker() { 
+  w.terminate();
+  w = undefined;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+
+Server: <input id='tr6-url' size='40' placeholder='URL to test' value='http://cs.tru.ca:8058'><br>
+Username: <input id='tr6-username' size='20'><br>
+Password: <input id='tr6-password' size='20'><br>
+<button id='tr6-submit-signup'>Submit - SignUp</button><br>
+<button id='tr6-submit-unsubscribe'>Submit - Unsubscribe</button>
+<div id='tr6-message'>Message here!</div>
+<script>
+    var db = new TRUMongoDBWebService();
+    
+    $('#tr6-submit-signup').click(function() {
+        db.register($('#tr6-url').val(), $('#tr6-username').val(), $('#tr6-password').val(), 
+            function(data) { 
+                $('#tr6-message').html(JSON.stringify(data));
+        });
+    });
+	
+    $('#tr6-submit-unsubscribe').click(function() {
+        db.unsubscribe($('#tr6-url').val(), $('#tr6-username').val(), $('#tr6-password').val(), 
+            function(data) { 
+                $('#tr6-message').html(JSON.stringify(data));
+        });
+    });
+
+// library
+function TRUMongoDBWebService() {
+    this.host = "";  // with open()
+    this.connection_token_id = -1;
+    this.collection_name = "";
+    this.collection_id = -1;
+    
+    this.register = function(host, u, p, callback) {
+        $.ajax({
+            url: host+'/users', 
+            data: { username: u, password: p },
+            method: 'post',
+            success: function(data) { 
+                callback(JSON.parse(data));
+            }
+        });
+    }
+	
+    this.unsubscribe = function(host, u, p, callback) {
+        $.ajax({
+            url: host+'/users', 
+            data: { username: u, password: p },
+            method: 'delete',
+            success: function(data) { 
+                callback(JSON.parse(data));
+            }
+        });
+    }
+    //...
+}
+</script>
+                    
+
+
+
+</html>

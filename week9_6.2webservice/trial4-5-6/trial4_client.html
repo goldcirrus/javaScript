@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+Server: <input id='tr4-url' size='40' placeholder='URL to test' value='http://cs.tru.ca:8058'><br>
+Username: <input id='tr4-username' size='20'><br>
+Password: <input id='tr4-password' size='20'><br>
+
+<button id='tr4-submit-signup'>Submit SignUp</button><br>
+<button id='tr4-submit-unsubscribe'>Submit Delete/Unsubscribe</button>
+
+<div id='tr4-message'>Message here!</div>
+
+
+<script>   //server.js in mar23 dirctory
+    $('#tr4-submit-signup').click(function() {
+        $.post($('#tr4-url').val()+'/users',     //send post query written for /users URI
+               { username: $('#tr4-username').val(), password: $('#tr4-password').val() },
+               function(data) { 
+                     $('#tr4-message').html(data);
+               }
+        );
+    });
+    
+	  // DELETE; Can you use $.get or $.post? If not, then what method?
+	$('#tr4-submit-unsubscribe').click(function() {
+        $.ajax({             
+		     url:$('#tr4-url').val()+'/users/',      //client send parameter id=1
+             method:'delete',
+             data:{username:$('#tr4-username').val(),password:$('#tr4-password').val()},
+             success:function(data){$('#tr4-message').html(data);}			 
+		});
+    });
+	
+	
+	/*Let's implement server.js that supports SignUp and SignIn, and test it. 
+Here are the related messages that submitted to the server.
+Create/Register a new user
+Request - ??? /users?username=...&password=...
+Response - '{"result":"true"|"false", "explanation":"..."}'
+Delete a new user
+Request - ??? /????username=...&password=...
+Response - '{"result":"true"|"false", "explanation":"..."}'
+*/
+	
+</script>
+
+
+
+</html>

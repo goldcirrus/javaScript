@@ -1,0 +1,85 @@
+Server: <input id='tr7-url' size='40' placeholder='URL to test'><br>
+Username: <input id='tr7-username' size='20'><br>
+Password: <input id='tr7-password' size='20'><br>
+<button id='tr7-submit-signin'>Submit - SignIn/Open</button><br>
+<button id='tr7-submit-close'>Submit - Close</button>
+<div id='tr7-message'>Message here!</div>
+<script>
+    var db = new TRUMongoDBWebService();
+    
+    $('#tr7-submit-signin').click(function() {
+        db.open($('#tr7-url').val(), $('#tr7-username').val(), $('#tr7-password').val(), 
+            function(data) { 
+                $('#tr7-message').html(JSON.stringify(data));
+        });
+    });
+    $('#tr7-submit-close').click(function() {
+        db.close(function(data) { 
+            $('#tr7-message').html(JSON.stringify(data));
+        });
+    });
+
+// library
+function TRUMongoDBWebService() {
+    this.host = "";  // with open()
+    this.connection_token_id = -1;
+    this.collection_name = "";
+    this.collection_id = -1;
+    
+    this.register = function(host, u, p, callback) {
+        $.ajax({
+            url: host + "/users", 
+            data: { username: u, password: p },
+            method: 'post',
+            success: function(data) { 
+                callback(JSON.parse(data));
+            }
+        });
+    }
+	
+    this.unsubscribe = function(host, u, p, callback) {
+        $.ajax({
+            url: host + "/users", 
+            data: { username: u, password: p },
+            method: 'delete',
+            success: function(data) { 
+                callback(JSON.parse(data));
+            }
+        });
+    }
+	
+	
+    this.open = function(host, u, p, callback) {
+        var twsthis = this;  // preserve the current TRUMongoDBWebService object
+        $.ajax({
+            url: host+'/tokens', 
+            data: { username: u, password: p },
+            method: post,
+            success: function(data) { 
+                data = JSON.parse(data);
+                if (data.tokenid >= 0) {
+                    //this.host = host;  // 'this' is not the TRUMongoDBWebService object
+                    //this.connection_token_id = data.tokenid;
+                    this.host = host;
+                    this.connection_token_id = data.tokenid;
+                }
+                callback(data);
+            }
+        });
+    }
+	
+	
+    this.close = function(callback) {
+        $.ajax({
+            url: host+'/tokens/'+this.connection_token_id, 
+            data: {},
+            method: delete,
+            success: function(data) { 
+                callback(JSON.parse(data));
+            }
+        });
+    }
+    //...
+}
+</script>
+                          

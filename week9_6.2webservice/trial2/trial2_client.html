@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+GET: <input id='tr2-get-url' size='50' placeholder='URL to test' value='http://cs.tru.ca:8058/users?username=john&password=56'> 
+     <button id='tr2-get-submit'>Submit</button><br><br>
+
+POST: server-url:    <input id='tr2-post-server-url' size='50' placeholder='URL to test' value='http://cs.tru.ca:8058/users'>
+      query-username:<input id='tr2-post-username'>
+      query-password:<input id='tr2-post-password'>
+      <button id='tr2-post-submit'>Submit</button><br><br>
+	  
+Post2: <button id='tr2-post2-submit'>Submit</button><br><br>
+	  
+<div id='tr2-message'>Message here!</div>
+
+<script>  //for get
+    $('#tr2-get-submit').click(function() {
+        $.get($('#tr2-get-url').val(), function(data) { 
+            $('#tr2-message').html(data);
+        });
+    });
+	
+      // for POST
+	$('#tr2-post-submit').click(function(){
+	   $.ajax({  // url, method, data, success
+            url: $('#tr2-post-server-url').val(), 
+            method: 'post',
+            data: {"username":$('#tr2-post-username').val(),"password":$('#tr2-post-password').val()},                   //data to be submitted
+            success: function(data) { //data come from server in json format
+                $('#tr2-message').html(data);
+            }
+        });
+	});
+	
+	$('#tr2-post2-submit').click(function(){
+	    $.post('http://cs.tru.ca:8058/users',{username:"Tom",password:"5678"}, function(data){$('#tr2-message').html(data);});
+	});
+	  
+</script>
+
+
+
+</html>

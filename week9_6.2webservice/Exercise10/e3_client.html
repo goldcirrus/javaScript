@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+URL: <input id='tr3-url' size='50' placeholder='URL to test' value='http://cs.tru.ca:8058/messages'><br>
+
+Sender: <input id='tr3-sender'><br>
+Receiver:<input id='tr3-receiver'><br>
+message:<input id='tr3-message'><br>
+
+<button type='button' id='tr3-submit'>Submit</button><br>
+<div id='tr3-display'>Message here!</div>
+<script>
+    $('#tr3-submit').click(function() {
+        $.ajax({  // url, method, data, success
+            url: $('#tr3-url').val(), 
+            method:'post',
+			data:{'sender':$('#tr3-sender').val(),'receiver':$('#tr3-receiver').val(),'message':$('#tr3-message').val()},
+            success: function(data) { 
+                $('#tr3-display').html(data);
+            }
+        });
+    });
+</script>
+
+
+
+</html>

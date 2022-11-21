@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./TRUWebService/truwebservice.obf.js"></script>
+</head>
+
+<body>
+    <h1>Demo for TRU MongoDB Web Service</h1>
+    <br>
+    
+    <div>
+        <input id='input-register-url' value='http://cs.tru.ca:8088'>
+        <input id='input-register-username' placeholder='username'>
+        <input id='input-register-password' type='password' placeholder='password'>
+		
+        <button id='button-register' type='text'>Register a User</button>
+        <button id='button-unsubscribe' type='text'>Delete a User</button>
+        <br>
+		
+        <br>
+        <input id='input-connect-url' value='http://cs.tru.ca:8088'>
+        <input id='input-connect-username' placeholder='username'>
+        <input id='input-connect-password' type='password' placeholder='password'>
+		
+        <button id='button-connect' type='text'>Connect</button>
+        <button id='button-close' type='text'>Close</button>
+		
+        &nbsp;&nbsp;&nbsp;<span id='span-connect'>Not connected</span>
+        <br>
+		
+		
+		
+		
+        <br>
+        <input id='input-collection' placeholder='collection name'>
+        <button id='button-collection'>Open Collection</button>
+        <br><br>
+        
+        <h2>Correct JSON strings for MongoDB operations should be used in the followings.</h2>
+        <h3>For example, {"name":"Dave", "major":"CS", "id":123456}, not {name:"Dave"}</h3>
+        <br>
+        <input id='input-insert-document' size='50' placeholder='document'>
+        <button id='button-insert'>Insert a Document</button>
+        <br>
+        <br>
+        <input id='input-update-query' size='50' placeholder='query'>
+        <input id='input-update-document' size='50' placeholder='document'>
+        <button id='button-update'>Update Documents</button>
+        <br>
+        <br>
+        <input id='input-delete-query' size='50' placeholder='query'>
+        <button id='button-delete'>Delete Documents</button>
+        <br>
+        <br>
+        <input id='input-find-query' size='50' placeholder='query'>
+        <button id='button-find'>Find Documents</button>
+        <br>
+        <div id='div-find-results'>
+        </div>
+    </div>
+    
+    <script>
+        var tws = new TRUMongoDBWebService();
+        
+        $("#button-register").click(function() {
+            tws.register($("#input-register-url").val(), $("#input-register-username").val(), $("#input-register-password").val(), function(data) {
+                alert(JSON.stringify(data));
+            });
+        });
+        
+        $("#button-unsubscribe").click(function() {
+            tws.unsubscribe($("#input-register-url").val(), $("#input-register-username").val(), $("#input-register-password").val(), function(data) {
+                alert(JSON.stringify(data));
+            });
+        });
+        
+        $("#button-connect").click(function() {
+            tws.open($("#input-connect-url").val(), $("#input-connect-username").val(), $("#input-connect-password").val(), function(data) {
+                if (data.tokenid >= 0)
+                    $("#span-connect").html("Connected");
+                else
+                    $("#span-connect").html("Not connected");
+                alert(JSON.stringify(data));
+            });
+        });
+        
+        $("#button-close").click(function() {
+            tws.close(function(data) {
+                $("#span-connect").html("Not connected");
+                alert(JSON.stringify(data));
+            });
+        });
+        
+        $("#button-collection").click(function() {
+            tws.collection($("#input-collection").val(), function(data) {
+                alert(JSON.stringify(data));
+            });
+        });
+        
+        $("#button-insert").click(function() {
+            tws.insert($("#input-insert-document").val(), function(data) {
+                alert(JSON.stringify(data));
+            });
+        });
+        
+        $("#button-find").click(function() {
+            tws.find($("#input-find-query").val(), function(data) {
+                var str = "";
+                if (data.result) {
+                    for (var i = 0; i < data.documents.length; i++) {
+                        for (var p in data.documents[i])
+                            if (p != "_id")
+                                str += p + ":" + JSON.stringify(data.documents[i][p]) + "<br>";
+                    }
+                }
+                $("#div-find-results").html(str);
+                alert(JSON.stringify(data));
+            });
+        });
+        
+        $("#button-update").click(function() {
+            tws.update($("#input-update-query").val(), $("#input-update-document").val(), function(data) {
+                alert(JSON.stringify(data));
+            });
+        });
+        
+        $("#button-delete").click(function() {
+            tws.delete($("#input-delete-query").val(), function(data) {
+                alert(JSON.stringify(data));
+            });
+        });
+    </script>
+</body>
+</html>

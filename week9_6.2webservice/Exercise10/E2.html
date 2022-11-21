@@ -1,0 +1,62 @@
+<!-- Can you prepare RESTful API for the next operations? You also need to decide the return JSON messages.
+Request - CRUD (Create, Read, Update, Delete) resource operations from client
+
+Create	HTTP POST
+Read	HTTP GET
+Update	HTTP PUT	Not supported in HTML5
+Delete	HTTP DELETE	Not supported in HTML5
+
+
+client program -->
+URL: <input id='tr2-url' size='50' placeholder='URL to test'><br>
+Username: <input id='tr2-username'><br>
+Password:<input type='password' id='tr2-password'><br>
+<button type='button' id='tr2-submit'>Submit</button><br>
+<div id='tr2-display'>Message here!</div>
+<script>
+    $('#tr2-submit').click(function() {
+        $.ajax({  // url, method, data, success
+            url: $('#tr2-url').val(), 
+            method: 'post',
+            data: {username: $('#tr2-username').val(), password: $('#tr2-password').val()},
+            success: function(data) { 
+                $('#tr2-display').html(data);
+            }
+        });
+    });
+</script>
+
+
+<!-- server program 
+Let's write server.js that will process SignIn. The server program will send a JSON string. 
+Run the program with your port number, and test it with the above client program. 
+
+
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
+
+var server = app.listen(8087, function () {
+})
+
+// for POST query
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// To support CORS
+app.all('/*', function(req, res, next) {  // /*: any routes
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");  // Default: only GET and POST
+    next();  // Express middleware function; To continue to next operations
+});
+
+// Route operations
+app.post('/users', function(req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var msg = {op: "SignIn", username: username, password: password};
+    res.send(JSON.stringify(msg));
+});
+...
+-->
+       

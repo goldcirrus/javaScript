@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+URL:      <input id='tr2-url' size='50' placeholder='URL to test' value='http://cs.tru.ca:8058/users'><br>
+Username: <input id='tr2-username'><br>
+Password: <input type='password' id='tr2-password'><br>
+
+<button type='button' id='tr2-submit'>Submit</button><br>
+
+<div id='tr2-display'>Message here!</div>
+
+
+<script>  //
+    $('#tr2-submit').click(function() {
+        $.ajax({  // url, method, data, success
+            url: $('#tr2-url').val(), 
+            method: 'post',
+            data: {"username":$('#tr2-username').val(),"password":$('#tr2-password').val()},                   //data to be submitted
+            success: function(data) { //data come from server in json format
+                $('#tr2-display').html(data);
+            }
+        });
+    });
+	
+	//Let's write server.js that will process SignIn. 
+	//The server program will send a JSON string. Run the program with your port number, and test it with the following.
+</script>
+
+
+
+</html>

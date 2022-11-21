@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+GET: <input id='tr1-get-url' size='50' placeholder='URL to test'> 
+     <button id='tr1-get-submit'>Submit</button><br>
+
+POST: <input id='tr1-post-url' size='50' placeholder='URL to test'>
+      <button id='tr1-post-submit'>Submit</button><br>
+	  
+<div id='tr1-message'>Message here!</div>
+
+<script>
+    $('#tr1-get-submit').click(function() {                     //$('#tr1-get-url').val() is the url towards server
+        $.get($('#tr1-get-url').val(), function(data) {        //client request dtat from server via GET method. receive data from server
+            $('#tr1-message').html(data);
+        });
+    });
+    
+	// for POST
+	$('#tr1-post-submit').click(function() {                    //$('#tr1-post-url').val() is the url towards server
+        $.post($('#tr1-post-url').val(), function(data) {       //client send data(from form input) via POST to server. receive data from server
+            $('#tr1-message').html(data);
+        });
+    });
+</script>
+
+
+
+</html>

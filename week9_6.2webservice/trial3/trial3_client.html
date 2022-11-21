@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+GET:  <input id='tr3-get-url' size='50' placeholder='URL to test' value='http://cs.tru.ca:8058/tokens/2'> 
+      <button id='tr3-get-submit'>Submit</button><br>
+	  
+POST: <input id='tr3-post-url' size='50' placeholder='URL to test' value='http://cs.tru.ca:8058/tokens/3'>
+      <button id='tr3-post-submit'>Submit</button><br>
+	  
+<div id='tr3-message'>Message here!</div>
+
+<script>
+
+//How to check parameters? E.g., .../tokens/1 and .../tokens/1,2. Let's req.params.id. 
+    $('#tr3-get-submit').click(function() {
+        $.get($('#tr3-get-url').val(), function(data) { 
+            $('#tr3-message').html(data);
+        });
+    });
+     // for POST
+	$('#tr3-post-submit').click(function() {
+        $.post($('#tr3-post-url').val(), function(data) { 
+            $('#tr3-message').html(data);
+        });
+    });
+	 
+</script>
+
+
+
+</html>

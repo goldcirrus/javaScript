@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+Server: <input id='tr5-url' size='40' placeholder='URL to test' value='http://cs.tru.ca:8058/tokens/'><br>
+Username: <input id='tr5-username' size='20'><br>
+Password: <input id='tr5-password' size='20'><br><br>
+
+<button id='tr5-submit-connection'>Submit - connection/Sign In/create a new token</button><br>
+<button id='tr5-submit-close'>Submit - close/destroy the token associated </button><br>
+
+<div id='tr5-message'>Message here!</div>
+
+<script>
+    $('#tr5-submit-connection').click(function() {
+        $.post($('#tr5-url').val(), 
+               { username: $('#tr5-username').val(), password: $('#tr5-password').val() },
+               function(data) { 
+                   $('#tr5-message').html(data);
+               }
+        );
+    });
+    
+  // DELETE; Can you use $.get or $.post? If not, then what method?
+	$('#tr5-submit-close').click(function() {
+        $.ajax({              //delete only writen for /messsages/:id URI
+		     url:$('#tr5-url').val()+'/1',           //client send parameter id=1 together with delete request
+             method:'delete',
+             data:{},
+             success:function(data){$('#tr4-message').html(data);}			 
+		});
+    });
+	
+	
+	/*Trial 5. Let's implement server.js that supports Connection and Close, and test it. 
+Here are the related messages that submitted to the server.
+Create/Open a new connection
+Request - ??? /tokens?username=...&password=...
+Response - '{"tokenid":"...", "explanaton":"..."}', where if tokenid is negative, then error
+Delete/Close the connection
+Request - ??? /???/{tokenid}
+Response - '{"result":"true"|"false", "explanation":"..."}'
+	*/
+</script>
+          
+
+
+
+</html>

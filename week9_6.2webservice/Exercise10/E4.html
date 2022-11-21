@@ -1,0 +1,32 @@
+<!-- client program -->
+URL: <input id='tr4-url' size='50' placeholder='URL to test'><br>
+Message Id:<input id='tr4-message-id'><br>
+<button type='button' id='tr4-submit'>Submit</button><br>
+<div id='tr4-display'>Message here!</div>
+<script>
+    $('#tr4-submit').click(function() {
+        $.ajax({  // url, method, data, success
+            url: $('#tr4-url').val() + '/' + $('#tr4-message-id').val(), 
+            method: 'delete',
+            data: {},
+            success: function(data) { 
+                $('#tr4-display').html(data);
+            }
+        });
+    });
+</script>
+
+
+<!-- server program
+Let's write server.js that will process DeleteMessageWithId. The server program will send a JSON string. 
+Run the program with your port number, and test it with the above client.
+...
+// Route operations
+app.delete('/messages/:id', function(req, res) {
+    var id = req.params.id;
+    var msg = {op:"DeleteMessageWithId", id:id};
+    res.send(JSON.stringify(msg));
+});
+...
+-->
+                        
