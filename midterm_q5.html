@@ -1,0 +1,17 @@
+<script>
+
+jQ.get('server-stock-values.php', 
+       function(data) { stock.add(data);},
+	   function (message) {alert(message);});
+
+jQ.get = function(url, success, failure) {
+              let timer = setTimeout(function() {failure('Timeout error');}, 10000);   //failure(message); invoked here
+         
+      		  $.get(url, function(data) {
+                   clearTimeout(timer);
+                   success(data);                   //success(data); invoked here, argument is data from server
+          });
+}
+
+
+</script>
