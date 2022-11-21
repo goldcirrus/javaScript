@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        #menu {
+            display: block;
+            position: absolute;
+            height: 25px;
+            width: 120px;
+            /*
+            border-style: solid;
+            border-width: 2px;
+            top: 100px;
+            left: 100px;
+            */
+            z-index: 999999;
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    <div >
+        <h1>Calculator - TruJS</h1>
+        <div id='zhong-app' >
+            <span zhjs-init='$zhjs.x = 10; $zhjs.z = 20'></span>
+			
+            x = <input zhjs-model='x'></br>
+            y = <input zhjs-model='y'></br>
+			
+            x + y + z = <span zhjs-bind='x, y'>Number($zhjs.x) + Number($zhjs.y)</span><br>
+            
+			x - y = <span zhjs-bind='x, y'>Number($zhjs.x) - Number($zhjs.y)</span><br>
+			
+            x * y = <span zhjs-bind='x, y'>Number($zhjs.x) * Number($zhjs.y)</span><br>
+			
+            x / y = <span zhjs-bind='x, y'>(Number($zhjs.x)) / (Number($zhjs.y))</span><br>
+			
+			x! = <span zhjs-bind='x'>factors($zhjs.x)</span></br> <!-- factorial of x -->
+            
+        </div>
+    </div>
+	
+	
+    <script>
+$zhjs = {};  // each model --> value
+$zhjs._expressions = {};  // each model -- [] of {output:..., expr:...}, i.e., a pair of output and expression
+
+factors=function(x){
+			    let i = 1;
+                for (let j = 1; j <= x; j++)
+                      i = i * j;
+								
+                return i;
+			              }
+
+function $zhjs_update() 
+{
+    let inputs = document.getElementById('zhong-app').querySelectorAll('input[zhjs-model]');    //inputs are array contains <input>
+    for (let i = 0; i < inputs.length; i++) {
+        let model = inputs[i].getAttribute('zhjs-model').trim();  //model is arribute's value 'x', 'y' in each loop
+		if(model!=undefined){
+		    $zhjs[model] = inputs[i].value;
+            $zhjs._expressions[model] = [];
+		}
+		else {alert("wrong 1.");}
+        
+    }
+    
+    let outputs = document.getElementById('zhong-app').querySelectorAll('[zhjs-bind]');     
+    for (let i = 0; i < outputs.length; i++) {
+        outVars = outputs[i].getAttribute('zhjs-bind').trim().split(/, */);		
+		    for (let m = 0; m < outVars.length; m++)
+            $zhjs._expressions[outVars[m]].push({output: outputs[i], expr: outputs[i].innerHTML});
+		
+        
+    }
+    
+    for (let m in $zhjs._expressions) {
+        for (let i = 0; i < $zhjs._expressions[m].length; i++)
+            $zhjs._expressions[m][i].output.innerHTML = eval($zhjs._expressions[m][i].expr);
+    }
+    
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('keyup', function() {
+            let m = this.getAttribute('zhjs-model').trim(); 
+            $zhjs[m] = this.value; 
+            for (let i = 0; i < $zhjs._expressions[m].length; i++) 
+                $zhjs._expressions[m][i].output.innerHTML = eval($zhjs._expressions[m][i].expr);
+        });
+    }
+}
+	
+	
+	window.addEventListener('load', function() {
+    $zhjs_update();
+});
+    </script>
+</body>
