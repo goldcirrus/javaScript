@@ -1,0 +1,19 @@
+Here are examples for the URI of 'http://test.com/start.html?command=Login&username=foo&password=topsecret'.
+
+decodeURI(url.parse(request.url).pathname) → '/start.html'
+
+decodeURI(url.parse(request.url).query) → 'command=Login&username=foor&password=topsecret'
+
+querystring.parse(decodeURI(url.parse(request.url).query)) → { command:'Login', username:'foo', password:'topsecret' }
+
+querystring.parse(decodeURI(url.parse(request.url).query))['command'] → 'Login'
+
+How to convert an associative array to a string?    JSON.stringfy()
+
+Let's put the GET query into a variable named _GET.
+
+How to know which input method, 'GET' or 'POST', is used
+if (request.method.toLowerCase() == "get")
+    ...
+else if (request.method.toLowerCase() == 'post')
+    ...

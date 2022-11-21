@@ -1,0 +1,46 @@
+<button type='button' id='tr3-button'>Click to test asynchronous i/o!</button>
+
+<script>
+// non-blocking, Asynchronous, Assuming that asyncio() in the system--------------------
+//function asyncio(callback) 通过$.get()得到server的data, 通过callback(data);处理data
+
+function asyncio(callback) {                                // A call back function is passed to this function as a parameter.
+    
+	$.get("test_async.html", function(data) {               // Pass a callback function for the network i/o job to $.get(url,callback_def(data));
+        alert("3. Get Data sent from the server!");   //.3.
+        callback(data);                                      //callback 处理从server得到的 data
+    });  //invoke $.get();
+	
+}
+
+//--in app-----
+
+$("#tr3-button").click(function() {  // Pass a callback function to $(...).click()
+    
+	asyncio(function(data_serv) {         // when invoke asyncio function, its augument==A callback function 通过自己的 argument(data_serv) 处理来自server的data
+        alert("4. display Data from $.get() sent from the server: '" + data_serv + "'");     //.4. 处理来自server的data
+    });  //invoke asyncio(cbk_definition);
+	
+    alert("2. After 'asyncio()'!");   //.2.
+});
+
+alert("1. After the registration of a 'click' event listener");   //.1. the very first because non-block on click()
+
+
+/*I/O jobs, such as file, serial, and communication operations, generally take a long time. 
+$.get() is a system I/O function
+Then, how user programs knows that the I/O jobs are completed? Answer is Non-blocking calls with callback functions. 
+Obviously the answer is callback functions: 
+When a system I/O function, e.g., $.get() is called, a callback function can be passed. 
+The callback function is called when the I/O job($.get) is completed.
+
+How does that work? The answer is the event-driven architecture.
+The event-driven architecture is used not only for I/O jobs, but also for all other events, 
+like HTML elements related events such as 'onclick', 'keyup', 'load', and so on. 
+When I/O jobs are completed, related events are triggered.
+The event-driven programming includes the registration of an event listener for an event on an object, 
+where the event listener is a callback function that will be called when the event is triggered on the event.
+*/
+
+</script>
+                  

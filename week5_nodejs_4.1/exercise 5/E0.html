@@ -1,0 +1,48 @@
+<script>
+/*
+    function recommender(callback){
+        $.get('recommender.php?q=weather', function(data){
+              callback(data);
+        });
+   }
+
+    
+    recommender(function(data) {
+        alert(data);  // It needs to display the weather and the recommendation
+    });
+*/
+</script>
+
+<script>
+/*Trial E0: Let's practice callback functions with the code that gets the weather information from the server. 
+If the weather is 'Sunny', then get a recommended sport. 
+If the weather is 'Cloudy', then get a recommended restaurant. 
+If the weather is 'Rainy', then get a recommebded music. 
+You can use recommender.php?q=weather, recommender.php?q=sport, and recommender.php?q=music. E.g., $.get(..., function(data) { ... });*/
+    
+	function recommender(callback) {     
+	    //query server with 'weather', to do something depending on server's send back 'data'
+        $.get('recommender.php?q=weather', function(data) {
+		
+            if (data == 'Sunny')                                        //if server send back 'data' is sunny
+                $.get('recommender.php?q=sport', function(data2) {        //then query server again with 'sport', server send back 'data2'
+                    callback(data + ": " + data2);                           //callback does somehting with 'data' and 'data2'
+                });
+            else if (data == 'Cloudy')                                   //if server send back 'data' is Cloudy
+                $.get('recommender.php?q=restaurant', function(data2) {   //then query server again with 'restaurant', server send back 'data2'
+                    callback(data + ": " + data2);                          //callback does somehting with 'data' and 'data2'
+                });
+            else if (data == 'Rainy')                                     //if server send back 'data' is Rainy
+                $.get('recommender.php?q=music', function(data2) {         //then query server again with 'music', server send back 'data2'
+                    callback(data + ": " + data2);                            //callback does somehting with 'data' and 'data2'
+                });
+            else
+                callback('No recommendation');
+				
+        });
+    }
+    
+    recommender(function(data) {
+        alert(data);  // It needs to display the weather and the recommendation
+    });
+</script>

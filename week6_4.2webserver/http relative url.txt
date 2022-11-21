@@ -1,0 +1,23 @@
+
+
+
+
+https://www.w3.org/TR/WD-html40-970917/htmlweb.html
+
+
+5.1.2 Relative URLs
+
+A relative URL (defined in [RFC1808]) doesn't contain any protocol or machine information. Its path generally refers to a resource on the same machine as the current document. 
+Relative URLs may contain relative path components (".." means one level up in the hierarchy defined by the path), and may contain fragment identifiers.
+
+Relative URLs are resolved to full URLs using a base URL. [RFC1808] defines the normative algorithm for this process.
+
+As an example of relative URL resolution, 
+assume we have the base URL "http://www.acme.com/support/intro.html". 
+
+The relative URL in the following markup for a hypertext link:
+  <A href="suppliers.html">Suppliers</A>
+would expand to the full URL "http://www.acme.com/support/suppliers.html", while the relative URL in the following markup for an image
+
+  <IMG src="../icons/logo.gif" alt="logo">
+would expand to the full URL "http://www.acme.com/icons/logo.gif".

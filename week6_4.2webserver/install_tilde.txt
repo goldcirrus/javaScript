@@ -1,0 +1,13 @@
+'~name' is assumed as the home HTML directory of the user 'name' is assumed, 
+and '~name' should be expanded. For example, '/~tom' should be replaced by '/home/tom/public_html'. For the exact home directory, 
+you may use the "tilde-expansion" module. 
+After you install the module as 
+
+$ npm install tilde-expansion 
+
+in the current working directory,
+
+var tilde = require("tilde-expansion");  // reference: tilde-expansion
+tilde('~tom', function(expanded) {
+    console.log(expanded);                //~tom
+});

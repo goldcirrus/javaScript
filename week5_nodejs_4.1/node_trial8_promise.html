@@ -1,0 +1,59 @@
+<button type='button' id='tr8-button-1'>Without Promise</button><br>
+<button type='button' id='tr8-button-2'>With Promise</button>
+
+https://www.tutorialspoint.com/es6/es6_promises.htm
+
+<script>
+/*Here is the case for which Promises can be very useful. 
+Let's assume that there are multiple asynchronous jobs to do. How can we check if all those jobs are done?*/
+
+//without promise 
+function asyncio1(resource, callback) {  // Will be used for multiple resources at the same time
+    $.get(resource, function(data) { 
+        callback(data);
+    });
+}
+
+
+//with promise
+var asyncio2 = function(resource) {
+    return new Promise(function(resolve, reject) {
+        $.get(resource, function(data) { 
+            resolve(data);     
+        });
+    });
+}
+
+//without promise
+$("#tr8-button-1").click(function() {
+    var count = 0;
+    var messages = [];
+    
+    for (let i = 0; i < 3; i++) {
+        let url;
+		
+        if (i == 0) url = "test_async.html";
+        else if (i == 1) url = "test_async2.html";
+        else url = "test_async3.html";
+        
+		asyncio1(url, function(data) {     //callback function's argument == data from server
+            count++;
+            messages.push(data);
+            if (count == 3)
+                alert("All three jobs are done after " + url + ". " + data);
+        });
+    }
+});
+
+//with promise
+messages = [];
+$("#tr8-button-2").click(function() {  // Looks more useful
+    Promise.all([asyncio2("test_async.html"), asyncio2("test_async2.html"), asyncio2("test_async3.html")])  // multiple Promises
+        .then(messages => {                     //message is callback function's argument
+            alert("All three jobs are done. " + messages[2]);
+        });
+});
+
+//.then(function(message){alert("All three jobs are done. " + messages[2]);});
+</script>
+                  

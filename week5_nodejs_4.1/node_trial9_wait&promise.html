@@ -1,0 +1,35 @@
+<button type='button' id='tr9-button-1'>Click to test asynchronous operation with callback!</button><br>
+<button type='button' id='tr9-button-2'>Click to test async-await asynchronous operation!</button>
+
+<script>
+function asyncio1(resource, callback) {
+    $.get(resource, function(data) { 
+        callback(data);
+    });
+}
+
+$("#tr9-button-1").click(function() {
+    asyncio1("test_async.html", function(d){alert("get server data as: "+d);});
+});
+
+/*****************************************/
+
+async function asyncio2(resource) {
+    var p = new Promise(function(resolve, reject) {
+        $.get(resource, function(data) { 
+            resolve(data);
+        });
+    });
+	
+    alert("Before await p");  //.1.
+    var data = await p;                 // It looks like synchronous programming. What will be returned? Confusing
+                                        // The control returns. When p is completed, the control moves forward again.
+    alert("Data sent from the server: '" + data + "'");   //.3.
+}
+
+
+$("#tr9-button-2").click(function() {
+    asyncio2("test_async.html");
+    alert("After .asyncio2()");   //.2.
+});
+</script>

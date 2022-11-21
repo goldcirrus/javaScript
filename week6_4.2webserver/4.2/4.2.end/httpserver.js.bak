@@ -1,0 +1,7 @@
+if (request.method.toLowerCase() == "get")
+    ...
+else if (request.method.toLowerCase() == 'post')
+    ...
+
+
+querystring.parse(decodeURI(url.parse(request.url).query)) → { foo: 'bar', hello: 'world' }

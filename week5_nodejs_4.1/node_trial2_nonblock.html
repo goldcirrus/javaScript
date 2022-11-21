@@ -1,0 +1,27 @@
+<button type='button' id='tr2-button'>Click to test non-blocking call!</button>
+
+<script>
+//---non-blocking---------------
+function nonblockingft() {
+    var xhttp = new XMLHttpRequest();    
+    xhttp.onreadystatechange = function() {                     // callback function
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Data received from the server!");     //4
+        }
+    };
+    
+	xhttp.open("GET", "test_async.html", true);  // true: Asynchronous; Go back to the caller before the data comes from the server.
+ 	alert("After .open()");   //1
+    
+	xhttp.send();        //send() doesn't block wait for server response
+    
+	alert("After .send()");   //2
+}
+
+$("#tr2-button").click(function() {
+    nonblockingft();      //nonblockingft() does not block wait untill the data comes from the server.
+    
+	alert("After 'nonblockingft()'");    //3
+});
+</script>
+         

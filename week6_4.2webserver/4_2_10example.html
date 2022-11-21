@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html>
+<head>
+</head>
+
+<body>
+    <form method = 'post' action='test_sjs.sjs'>
+        Username: <input id='demo' type='text' name='username'></input><br>         
+        Password: <input type='password' name='password'></input><br>
+        <input type='submit'></input>
+    </form>
+</body>
+</html>
+
+
+//input type is text, change to number in javascript: 
+let x = document.getElementById("demo").value;     //x is text
+x=Number(x)                                        //x is number
+
+<script>
+//below is file content of test_sjs.sjs
+
+exports.proceed = proceed;
+
+function proceed(_QUERY, callback) {
+    var html = '';
+    
+    for (var x in _QUERY)
+        html += x + '=' + _QUERY[x] + '<br>';
+    
+    callback(html);
+}
+

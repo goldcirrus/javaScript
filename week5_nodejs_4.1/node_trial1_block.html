@@ -1,0 +1,28 @@
+<button type='button' id='tr1-button'>Click to test blocking call!</button>
+
+<script>
+//--blocked---------------------
+function blockingft() {
+    var xhttp = new XMLHttpRequest();    
+    
+	xhttp.onreadystatechange = function() {                      // callback function from the system
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Data received from the server!");   //2
+        }
+    };
+
+    xhttp.open("GET", "test_async.html", false);  // false:Synchronous; AJAX should be completed before going back to the caller.
+    alert("After .open()");   //1
+    
+	xhttp.send();  // Blocked here, finish untill the data comes back from the server: after 2 executed. 
+    
+	alert("After .send()");    //3, blocked after xhttp.send()
+}
+
+$("#tr1-button").click(function() {
+    blockingft();   //blockingft() waits at .send() untill the data comes from the server. 
+	
+    alert("After 'blockingft()'");  //4 blocked after blockingft()
+});
+</script>
+          

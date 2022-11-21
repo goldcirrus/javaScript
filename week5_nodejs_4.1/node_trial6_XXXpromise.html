@@ -1,0 +1,37 @@
+<button type='button' id='tr6-button-1'>Click to test non-blocking call with callback function!</button><br>
+<button type='button' id='tr6-button-2'>Click to test non-blocking call with Promise!</button>
+
+<script>
+//in library
+function asyncio1(resolve_cbk, reject_cbk) {
+    $.get("test_async.html", function(data) { 
+        resolve_cbk(data);            //$.get 将来自server的data作为argument带入给invoked resolve_cbk; 
+    });
+}
+
+//in app
+$("#tr6-button-1").click(function() {
+    asyncio1(function(data) {        //resolve_cbk的definition得到的argument就是上面:$.get 将来自server的data作为argument带入给invoked resolve_cbk;
+        alert("1. Data sent from the server: '" + data + "'");
+    }, function(error) {
+        alert("1. Error");
+    });
+});
+
+//the asynchronous method returns a promise to supply the value at some point in the future.
+var asyncio2 = new Promise(function(resolve_cbk, reject_cbk) {
+        $.get("test_async.html", function(data) { 
+            resolve_cbk(data);       //resolve_cbk 的argument就是.then(callback的argument);
+        });
+    });
+
+
+
+$("#tr6-button-2").click(function() {
+    asyncio2
+        .then(function(data) {  // .then(): if promise is resolved, resolve_cbk(data); 被激活
+            alert("2. Data sent from the server: '" + data + "'");
+        })
+        .catch(function(error){alert("2. "+error);});  // .catch(??????): if promise is rejected
+});
+</script>

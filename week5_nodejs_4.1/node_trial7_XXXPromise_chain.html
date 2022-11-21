@@ -1,0 +1,67 @@
+<button type='button' id='tr7-button-1'>Click to test nested operations!</button><br>
+<button type='button' id='tr7-button-2'>Click to test chaining operations with Promise!</button>
+
+<script>
+//Chaining is used in this case. After the 1st asynchronous operation, the second operation. 
+//After the 2nd asynchronous operation, the 3rd operation. There is an order.
+//Not like the three asynchronous operations in parallel.
+
+
+
+function asyncio1(resource, callback) {  // nested asynchronous operations
+    $.get(resource, function(data) { 
+        callback(data);
+    });
+}
+
+$("#tr7-button-1").click(function() {  // Nested deep and deep
+    asyncio1("test_async.html", function(data) {  
+        asyncio1("test_async2.html", function(data) {  
+            asyncio1("test_async3.html", function(data) {  
+                alert("Data sent from the server: '" + data + "'");
+            });
+        });
+    });
+});
+
+
+var asyncio2 = function(resource) {
+    return new Promise(function(resolve, reject) {
+        $.get(resource, function(data) { 
+            resolve(data);
+        });
+    });
+}
+
+
+
+$("#tr7-button-2").click(function() {  // Looks more sequential
+    asyncio2("test_async.html")           //open url=='tesst_async.html' pass its data_value to data,data2,data3
+        .then(function(data) { 
+            return asyncio2("test_async2.html");
+         })
+        .then(function(data2) { 
+            return asyncio2("test_async3.html");
+         })
+        .then(function(data3) { 
+            alert("Data sent from the server: '" + data3 + "'");
+         });
+});
+
+
+/*my codes
+$("#tr7-button-2").click(function() {
+    asyncio2()
+        .then(function() {
+            return asyncio2();
+         })
+        .then(function() {
+            return asyncio2("test_async3.html");
+         })
+        .then(function(data3) {
+            alert("Data sent from the server: '" + data3 + "'")
+         });
+});
+*/
+</script>
+          

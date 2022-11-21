@@ -1,0 +1,17 @@
+//---- TRUWSJS ----
+var sjs = ???(pathname);  // 'pathname' is a sjs script file. This file is required as a module.
+                          // We assume that all '.sjs' programs have the function, proceed(), that is the starting point like main() in Java and C/C++ programs.
+sjs.proceed(_GET, _POST, function(html_content) {  // callback function to get the result from the sjs program
+    ....
+    response.???(html_content);
+    response.???();
+});
+
+
+//---- test.sjs ----serverside script is one function
+function proceed(_GET, _POST, callback) {
+    var html;
+    ....
+    ???(html);
+}
+???.??? = proceed;

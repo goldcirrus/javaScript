@@ -1,0 +1,32 @@
+<script>
+var i = 10;
+for (var i = 0; i < 20; i++) {  // Block scope
+    ;
+}
+for (var i = 0; i < 30; i++)  // Block scope
+    ;
+alert("from var: "+i);  // 10 or 20 or 30? answer is 30
+
+//var does not support block scopes. All var variables in the global scope are created in window object.
+
+
+let j = 10;
+for (let j = 0; j < 20; j++)  // Block scope 另外一个j
+    ;
+alert("from let: "+j);  // 10 or 20? answer is 10
+alert(window.j);  // undefined? answer is yes
+
+//let variables cannot be redeclared. 只能 let x; 一次
+
+
+const x = 10;
+for (let i = 0; i < 5; i++)  // Block scope
+    //const x = 30;    //错误，不可执行 x cannot be changed.
+alert("from const: "+x)      //10 
+alert(window.x);  // undefined
+
+
+
+
+
+</script> 
