@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+
+<body>
+<button id='tr3-toggle'>Toggle the next!</button>
+<br> <br>
+<div id='tr3-message' style='width:400px; border:1px solid Blue'>Great work on the presentation.</div>
+
+<script>
+//Let's try write toggle() with the id selection. What objects and methods do you need to use to see 
+//whether an HTML element is displayed
+
+function jQ(x) {
+    if (typeof x == 'string') {
+        let id = x.substring(1,x.length);
+		//return an object contain its property function: toogle
+        return {
+		    toggle: function(){
+			    if(document.getElementById(id)==null) return;
+			    if (window.getComputedStyle(document.getElementById(id)).display == 'none' || window.getComputedStyle(document.getElementById(id)).display == 'NONE')
+				    document.getElementById(id).style.display = 'block';
+				else
+				    document.getElementById(id).style.display = 'none';
+			}            
+        }
+    }
+}
+
+document.getElementById('tr3-toggle').addEventListener('click', function() {
+    jQ('#tr3-message').toggle();
+});
+
+
+</script>
+
+
+
+
+
+
+                  or mycode:       toggle: function() {
+if(window.getComputedStyle(document.getElementById(id)).getPropertyValue('display') =='block')
+   document.getElementById(id).style.display = 'none';
+else
+   document.getElementById(id).style.display = 'block';
+}
+
+<p>teacher's code as below:
+
+function jQ(x) {
+    if (typeof x == 'string') {
+        let id = x.substring(1, x.length);
+        return {
+            toggle: function() { 
+                let element = document.getElementById(id);
+                if (element == null) return;
+                if (window.getComputedStyle(element).getPropertyValue("display").toLowerCase() == "none")
+                    element.style.display = "block";
+                else
+                    element.style.display = "none";
+            }
+        }
+    }
+}
+
+document.getElementById('tr3-toggle').addEventListener('click', function() {
+    jQ('#tr3-message').toggle();
+});
+</p>
+
+         
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+
+<body>
+<button id='tr2-btn'>Check!</button> 
+<br>
+<br>
+<div id='tr2-pane-result' style='width:400px; border:1px solid Blue'>Result here!</div>
+
+<script>
+//Let's try write a function that checks if a passed value is document, window, HTMLElement, string, undefied, or something else, 
+//and returns an object that is different for different types.
+
+//--library
+function check2(x) {
+    if (x == window) 
+	   return {                                 //window is arugument in callback invokation, m is parameter in callback definition in appliction
+           getMsg: function(callback) { callback("window");}    
+       }
+	   
+    else if (x == document) 
+	   return {                                 //document is arugument in callback invokation, p is parameter in callback definition in application
+	       getMsg: function(callback) { callback("document"); },
+		   getMsg2: function(callback) { callback("data2"); }
+	   }
+	   
+	   
+    else if (typeof x == 'string') 
+	   return {
+	       getMsg: function(callback) { callback('string');}
+	   }
+	   
+    else if (x instanceof HTMLElement) 
+	   return {
+	       getMsg: function(callback) { callback(this);}
+	   }
+    else if (x == undefined) 
+	   return {
+	       getMsg: function(callback){callback("undefied");}
+	   }
+    else 
+	   return {
+	       getMsg: function(callback){callback("something else");}
+	   }
+}
+
+
+//--application-----------------
+document.getElementById('tr2-btn').addEventListener('click', function() {
+    let msg = '';
+	
+    check2(document).getMsg(function(m) { 
+	                     alert("in document, this is "+getCom);	
+						 msg += m + '<br>'; //this is window
+	                     });    //m is parameter in real_callback function's definition to represent "window" in invocation
+    check2(window).getMsg(function(p){msg+=p+'<br>';});            //p is parameter in real_callback function's definition to represent "document" in invocation
+    check2('#tr2-query').getMsg(function(p){msg+=p+'<br>';});
+    check2(document.getElementById('tr1-pane-result')).getMsg(function(p){msg+=p+'<br>';});
+    check2(this).getMsg(function(p){msg+=p+'<br>';});
+    check2().getMsg(function(p){msg+=p+'<br>';});
+    check2($).getMsg(function(p){msg+=p+'<br>';});
+	
+    document.getElementById('tr2-pane-result').innerHTML = msg;
+});
+
+
+
+
+</script>
+          <p>
+function check(x) {
+    if (x == window) return {
+        getMsg: function(callback) { callback("window"); }
+    }
+    else if (x == document) return {
+        getMsg: function(callback) { callback("document"); }
+    }
+    else if (typeof x == 'string') return {
+        getMsg: function(callback) { callback("string"); }
+    }
+    else if (x instanceof HTMLElement) return {
+        getMsg: function(callback) { callback("HTMLElement"); }
+    }
+    else if (x == undefined) return {
+        getMsg: function(callback) { callback("undefined"); }
+    }
+    else return {
+        getMsg: function(callback) { callback("something else"); }
+    }
+}
+
+document.getElementById('tr2-query').addEventListener('click', function() {
+    let msg = '';
+    check(document).getMsg(function(m) { msg += m + '<br>'; });
+    check(window).getMsg(function(m) { msg += m + '<br>'; });
+    check('#tr2-query').getMsg(function(m) { msg += m + '<br>'; });
+    check(document.getElementById('tr1-pane-result')).getMsg(function(m) { msg += m + '<br>'; });
+    check(this).getMsg(function(m) { msg += m + '<br>'; });
+    check().getMsg(function(m) { msg += m + '<br>'; });
+    check($).getMsg(function(m) { msg += m + '<br>'; });
+    document.getElementById('tr2-pane-result').innerHTML = msg;
+});		  
+
+</p>
+
+         
+
+
+
+</body>
+
+</html>

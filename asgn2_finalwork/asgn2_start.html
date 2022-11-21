@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <title>Week2 Assignment</title>
+   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+   <script src="lzlibrary.js"></script>
+   
+    <style>
+        #menu {
+            display: none;
+            position: absolute;
+            height: 25px;
+            width: 120px;
+            /*
+            border-style: solid;
+            border-width: 2px;
+            top: 100px;
+            left: 100px;
+            */
+            z-index: 999999;
+        }
+    </style>
+   
+  </head>
+  
+  
+  <body>
+  
+   <div id='menu'>
+        <button id='yellow' style='display: inline; width: 25px; background-color: Yellow'>Y</button>
+        <button id='red' style='display: inline; width: 25px; background-color: Red'>R</button>
+        <button id='blue' style='display: inline; width: 25px; background-color: Blue'>B</button>
+        <button id='white' style='display: inline; width: 25px; background-color: White'>W</button>
+    </div>
+    
+	<h2>click me to change text color </h2>
+
+    <p id='p1'>
+    This is a paragraph with id: p1. my background color is setup by ZZQQ$(string), click me to see the alert message! If you only wanted this to work on select paragraphs, you would change the selector to p.myclass or something like that. 
+	This hinges on the fact double clicking a word highlights it in browsers. Not really sure if it's exactly how answers.com 
+	does it, to be honest.
+    </p >
+	
+    <p class='c1'>
+    This is a paragraph with class: c1. Click me to see the alert message! In Mozilla, Safari and Opera userSelection now is a Selection object, while in Internet Explorer it's a Text Range object. 
+	This difference will remain valid for the rest of your script: Internet Explorer's Text Ranges are fundamentally 
+	different from Mozilla's Selection and W3C's Range objects, and all other code that you write will require a branch for 
+	IE and a branch for all other browsers.    </p>
+	
+	<p style='border:solid 1px Red'>This is a simple paragraph example. no class, no id, just plain p. Have a nice day. </p>
+	
+	<p id='p-hide' style='background-color:yellow'>This paragraph can be hide. </p>
+	
+	<p id='p-toggle' style='background-color:gray'>This paragraph can be hide and shown - goggled. </p>
+	
+	<p id='p2'>This paragraph's text color is setup by ZZQQ$(htmlelement).css()</p>
+    
+	<br><br>
+	
+	<button id='btn-v'> show version</button>	
+	<br></br>	
+	<button id='btn-hide'>hide a paragraph</button>
+	<br></br>
+	<button id='btn-show'>show a hidden paragraph</button>
+	<br></br>
+	<button id='btn-toggle'>toggle a paragraph to display and hide</button>
+	<br></br>
+	<button id='btn-on'>test on() function</button>
+	<br></br>
+	<button id='btn-click'>test id selector and click()function, just one click</button>
+	<br></br>
+	<button class='btn-dbclick'>test class selector and dblclick() function, must double click</button>
+	
+	
+	
+  
+  
+<script>
+
+
+
+
+/*
+	*	Registration of event listeners for double click and click
+*/
+
+ZZQQ$(document).ready(function(x) {               //when document is ready, callback in ready(callback) is executed.
+    //alert("i am ready: "+ZZQQ$.version);                    //this is document HTMLElement 
+	ZZQQ$('#btn-click').click(function(){alert('id selector and click() function are working!');});
+	
+	ZZQQ$('.btn-dbclick').dblclick(function(){alert('class selector and dblclick function are working!');});
+	
+	ZZQQ$('h2').css('background-color', 'SkyBlue');
+	
+	ZZQQ$('h2').click(function(){ ZZQQ$(this).css('color','red');});	
+	
+	ZZQQ$(document.getElementById('p2')).css('color','red');
+	
+	ZZQQ$('#btn-v').click(function(){
+	       alert('software version is '+ZZQQ$.version);
+	});
+	
+	ZZQQ$('#btn-hide').click(function(){
+		   ZZQQ$('#p-hide').hide();
+    });
+	
+	ZZQQ$('#btn-show').click(function(){
+		   ZZQQ$('#p-hide').show();
+    });
+	
+	ZZQQ$('#btn-toggle').click(function(){
+		   ZZQQ$('#p-toggle').toggle();
+    });
+	
+	ZZQQ$('#btn-on').on('click', function(){alert('function on() is working');});
+	
+	
+	//---------------below is the menu part---------------------
+        //get text content of clicked HTMLElement on page
+    if(!window.Kolich){
+         Kolich = {};
+    }
+
+    Kolich.Selector = {};
+
+     //function return clicked text's content
+    Kolich.Selector.getSelected = function(){
+         var t = '';
+         if(window.getSelection){
+              t = window.getSelection();
+         }else if(document.getSelection){
+              t = document.getSelection();
+         }else if(document.selection){
+             t = document.selection.createRange().text;
+         }
+         return t;
+    }
+	
+	/*
+	 *	Registration of event listeners for double click and click
+     */
+	 
+	ZZQQ$(document).ready(function(){
+          ZZQQ$(document).on("dblclick", function(e) {              // for double click event    
+		      if (Kolich.Selector.getSelected() != '')
+			      dblclickHandler(e);                      // You need to implement this function
+          });
+	
+	      ZZQQ$(document).on("click", function() {           //for click event
+	              clickHandler();                        // You need to implement this function
+	      });
+    }); //end of ready()
+	
+	function clickHandler()  // e: click event   for single click event
+    {
+        // remove the menu
+        ZZQQ$("#menu").hide();
+    }
+	
+	
+	function dblclickHandler(e)  // e: click event
+    {
+        // display the menu
+        displayMenu(e);
+    }
+	
+	function displayMenu(e)  // e: dblclick event
+    {    
+	    var st = Kolich.Selector.getSelected();
+        if(st!=''){                        //'st' is the text content clicked 
+            //alert("You selected:\n"+st);   
+        
+		    // decide the position of the menu, and display it a bit above (Use fadeIn)
+            let x = e.pageX+'px' ;  // e.pageX and e.pageY for mouse position
+            let y = (e.pageY-23)+'px';  // a bit above
+			
+		
+            ZZQQ$("#menu").show();
+			ZZQQ$("#menu").css("top",y);  //set menu's position at mouth's location	
+            ZZQQ$("#menu").css("left",x); 
+			
+            // register callback functions for yellow, red, blue, white buttons
+            ZZQQ$('#yellow').on("click",function(){colorSelected('Yellow')}); 
+            // register callback functions for red, blue and white buttons
+		    ZZQQ$('#red').click(function(){colorSelected('red')});
+		    ZZQQ$('#blue').click(function(){colorSelected('blue')});
+		    ZZQQ$('#white').click(function(){colorSelected('white')});       
+        }
+	}
+	
+	
+	function colorSelected(color) 
+    {
+        // remove the menu quickly
+        ZZQQ$("#menu").hide();
+
+        // change the color of the selected word - create a new element; append the element; remove the old element(s)
+        var selObj = Kolich.Selector.getSelected();
+        var selRange = selObj.getRangeAt(0);
+        var newElement = document.createElement("span");
+        var documentFragment = selRange.extractContents();
+        newElement.appendChild(documentFragment);
+        newElement.style.setProperty('background-color', color);
+        selRange.insertNode(newElement);
+        selObj.removeAllRanges();
+    }        
+	
+	
+}); //end of ZZQQ$(document).ready()
+
+
+
+
+
+  
+
+</script>
+
+</body>
+
+</html>

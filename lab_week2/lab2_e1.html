@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+
+<body>
+<button id='tr1-query'>Check!</button>  <br>
+<br>
+
+<div id='tr1-pane-result' style='width:400px; border:1px solid Blue'>Result here!</div>
+
+
+<script>
+//Let's try write a function that checks if a passed value is document, window, HTMLElement, string, undefied, or something else.
+
+function check(x) {
+    if (x == window) 
+	{
+	    return "window";
+	}
+	
+    if(x == document) 
+	   {return "document";}
+	   
+    if(typeof x == 'string') 
+	   {return "string";}
+    if(x instanceof HTMLElement) 
+	   {return "HTMLElement";}
+    if(x == undefined)                //undefined is a key word, a special value
+	   {return "undefined";}
+    else 
+	   {return "something else";}
+}
+
+document.getElementById('tr1-query').addEventListener('click', function() {
+    let msg = '';
+    msg += check(document) + '<br>';
+    msg += check(window) + '<br>';
+    msg += check('#tr1-query') + '<br>';
+    msg += check(document.getElementById('tr1-pane-result')) + '<br>';
+    msg += check(this) + '<br>';
+    msg += check() + '<br>';
+    msg += check($) + '<br>';    //$ is jquery library function. undefined. 
+	
+    document.getElementById('tr1-pane-result').innerHTML = msg;
+});
+
+</script>
+
+   
+</body>
+
+</html>
