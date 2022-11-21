@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+
+<button id='tr2-button'>Click me to test the above code!</button>
+
+<script>
+function foo(lists) {
+    var fts = [];
+	
+    for (var i = 0; i < lists.length; i++) {
+        let p = lists[i];                       // what if 'var' is used instead of let? 3,3,3
+             //p is not shared by array lists elements. each for loop create a unique p for each array element because of 'let'
+		     //so below p is unique in each loop. each loop has an unique p has value from argument list's element's value. 
+		fts[i] = function() {
+            alert(p);            // will print 1,2,3
+        };
+    }
+	
+    return fts;      //return an array with its elements are function definitions
+}
+
+function goo() {
+    var lists = [1, 2, 3];
+	
+    var fts_return = foo(lists);      //invoke foo(lists) return an array with elements are function definitions. 
+	
+    for (var i = 0; i < fts_return.length; i++)
+        fts_return[i]();              // invoke array's element's function definitions here. What will be printed? will print 1, 2, and 3
+}
+//end of function definition
+
+$('#tr2-button').click(function() { goo(); });
+
+</script>
+
+</body>
+</html> 

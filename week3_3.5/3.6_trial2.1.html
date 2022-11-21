@@ -1,0 +1,16 @@
+TruJS model a: <span id='tr2-1-model-a'  trujs-init='$trujs.a = 10;'></span><br>
+TruJS model b: <span id='tr2-1-model-b'  trujs-init='$trujs.b = 20;'></span><br>
+a + b = <span id='tr2-1-bind' trujs-bind='a, b'>$trujs.a + $trujs.b</span><br>
+<button id='tr2-1-button-read'>Read the above two TruJS models and save them!</button><br>
+<button id='tr2-1-button-add'>Add the two variables and display the result!</button>
+<script>
+$trujs = {};  // each model --> value
+document.getElementById('tr2-1-button-read').addEventListener('click', function() {
+    eval(document.getElementById('tr2-1-model-a').getAttribute('trujs-init'));
+    eval(document.getElementById('tr2-1-model-b').getAttribute('trujs-init'));
+});
+
+document.getElementById('tr2-1-button-add').addEventListener('click', function() {
+    document.getElementById('tr2-1-bind').innerHTML = $trujs.a + $trujs.b;
+});
+</script>

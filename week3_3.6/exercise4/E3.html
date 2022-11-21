@@ -1,0 +1,21 @@
+<script>
+/*Write an object using the module pattern. The object includes [private] version, and the version can be assessed 
+only by .version(). E.g. obj.version() to read, and obj.version('2.3.1') to set.*/
+
+    var jQ = function() {
+        let version = '2365';       //private variable belongs to parent object/function
+		
+        return {
+            version: function(new_v) {
+                if (new_v == undefined)
+                    return version;
+                else
+                    version = new_v;
+            }
+        }
+    }();
+    
+    alert('version: ' + jQ.version())
+    jQ.version('1.1.2');
+    alert('version: ' + jQ.version());
+</script>

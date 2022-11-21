@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        td, th { border:1px solid black; }
+    </style>
+
+    <script src = 't3po_rev3.lib.js'></script>
+	
+    <script>
+        var t3po;
+        var y;
+
+        window.addEventListener('load', function() 
+        {
+            // Description of models, inputs, and outputs
+            // All the model names should follow the syntax of JS identifiers. This is because they will be used as variables in Tru3PO objects.
+            var model = {  // All the properties are optional.
+                't3pom1': { 
+                    initial: 3,
+                },
+                't3pom2': { 
+                    initial: 7,
+                    tojs: testfromt3po  // To JS code; This will be called whenever this model is changed. I.e., the 'change' event.
+                                        // This function is a user defined function in this file.
+                },
+                't3pom4': { initial: 'USA' },
+                't3pom5': { initial: ['3540', '4620'] },  // Multiple value model; E.g., the inputs of checkbox type and the select element with multiple
+//              't3pom5': { initial: [] },  // Multiple value model; E.g., the inputs of checkbox type and the select element with multiple 
+                                           // At least the empty initial, i.e., empty array, should be provided.
+                                           // This implies that the model is bound to view-input that can have multiple values.
+                't3pom7': {},
+                't3pom8': {},
+
+                't3pom12': { initial: ['VW', 'Hyundai'] },
+                
+                't3pom13': { initial: 'like Object.observe()', tojs: testfromt3po13  }
+            };
+
+            var view_input = [  // event is optional. The default event is change.
+                { id: 't3poi1', model: [ 't3pom1' ] },
+                { id: 't3poi2', model: [ 't3pom2' ] },
+                { id: 't3poi3', model: [ 't3pom1' ], event: [ 'keyup' ] },  // Additional events
+
+                { id: 't3poi4', model: [ 't3pom4' ] },  // Radio buttons with the same name are all bound to one model
+                { id: 't3poi5', model: [ 't3pom4' ] },
+                { id: 't3poi6', model: [ 't3pom4' ] },
+
+                { id: 't3poi9', model: [ 't3pom5' ] },  // Checkboxes with the same name are all bound to one model
+                { id: 't3poi10', model: [ 't3pom5' ] },
+                { id: 't3poi11', model: [ 't3pom5' ] },
+
+                { id: 't3poi7', model: [ 't3pom7' ] },
+
+                { id: 't3poi8', model: [ 't3pom8' ] },
+
+                { id: 't3poi12', model: [ 't3pom12' ] }
+            ];
+
+            var view_output = [
+                { id: 't3poo1', model: [ 't3pom1', 't3pom2' ], expr: "'The result is ' + (Number(T3PO.t3pom1) + Number(T3PO.t3pom2)) + '.'" },  // For each model, 'T3PO.' should be attached.
+                { id: 't3poo2', model: [ 't3pom7' ], expr: "T3PO.t3pom7 + ', external var y=' + y" }, 
+                { id: 't3poo8', model: [ 't3pom8' ], expr: "T3PO.t3pom8" },
+                { id: 't3poo9', model: [ 't3pom4' ], expr: "T3PO.t3pom4" },
+                { id: 't3poo10', model: [ 't3pom5' ], expr: "T3PO.t3pom5" },
+                { id: 't3poo12', model: [ 't3pom12' ], expr: "T3PO.t3pom12" },
+                { id: 't3poo13', model: [ 't3pom13' ], expr: "T3PO.t3pom13" }
+            ];
+            
+            // Create the Tru3PO object
+            t3po = new Tru3PO(model, view_input, view_output);
+        });
+        
+        /*
+        *   Let's test Tru3PO
+        */
+        
+        // Call back function from the model 't3pom2'.
+        function testfromt3po(value) {
+            document.getElementById('fromt3po').innerHTML = value;
+        }
+        function testfromt3po13(value) {
+            document.getElementById('fromt3po2').innerHTML = value;
+        }
+        
+        // Let's try to change the models from regular JS code
+        function testfromjs() {
+            t3po.update('t3pom2', document.getElementById('fromjs').value);
+        }
+        function testfromjs2() {
+            t3po.update('t3pom4', document.getElementById('fromjs2').value);
+        }
+        function testfromjs3() {
+            t3po.update('t3pom5', document.getElementById('fromjs3').value, true);
+        }
+        function testfromjs4() {
+            t3po.update('t3pom7', document.getElementById('fromjs4').value);
+        }
+        function testfromjs5() {
+            t3po.update('t3pom8', t3po.get('t3pom8') + document.getElementById('fromjs5').value);
+        }
+        function testfromjs12() {
+            t3po.update('t3pom12', document.getElementById('fromjs12').value, true);
+        }
+        function testfromjs13() {
+            t3po.update('t3pom13', document.getElementById('fromjs13').value, true);
+        }
+    </script>    
+</head>
+
+<body>
+    <div>
+        <h1 style='text-align:center'><img src='https://pbs.twimg.com/profile_images/22039052/03.01.c3po.jpg' width='100px' height='60px'>&nbsp;&nbsp; 
+            T3PO (TRU 3-Party Orchestrator)</h1>
+    </div>
+    <br>
+    
+    <h2>Test 1. Inputs to T3PO models, and T3PO model to outputs</h2>
+    <table>
+        <tr>
+            <td>
+                Input1(id: t3poi1 -> model: t3pom1): <input id = 't3poi1' type = 'number' min='0' max='10'></input>
+                <br>
+                Input2(id: t3poi3 -> model: t3pom1): <input id = 't3poi3' type = 'text'></input>
+                <br>
+                Input3(id: t3poi2 -> model: t3pom2): <input id = 't3poi2' type = 'text'></input>
+                <br>
+                <br>
+                <br>
+                Input1 + Input3 or Input2 + Input3 is 
+                <br>
+                <br>
+                Output1(model: t3pom1, t3pom2 -> id: t3poo1): <p id = 't3poo1' style='display:inline'></p>
+            </td>
+            <td style='position: relative; left: 0px'>
+                <input id='t3poi4' type='radio' name='country' value='Canada'></input> <label for='t3poi4'>Canada</label>
+                <input id='t3poi5' type='radio' name='country' value='USA'></input> <label for='t3poi5'>USA</label>
+                <input id='t3poi6' type='radio' name='country' value='China'></input> <label for='t3poi6'>China</label>
+                <p>The checked item is '<span id='t3poo9'></span>'.</p>
+            </td>
+            <td style='position: relative; left: 0px'>
+                <input id='t3poi9' type='checkbox' name='course[]' value='2680'></input> <label for='t3poi9'>2680</label>
+                <input id='t3poi10' type='checkbox' name='course[]' value='3540' checked></input> <label for='t3poi10'>3540</label>
+                <input id='t3poi11' type='checkbox' name='course[]' value='4620'></input> <label for='t3poi11'>4620</label>
+                <p>The selected items are '<span id='t3poo10'></span>'.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style='position: relative; left: 0px'>
+                <textarea id='t3poi7'></textarea>
+                <p>The text entered by the user is '<span id='t3poo2'></span>'.</p>
+            </td>
+            <td>
+                <select id='t3poi8' name='car'>
+                    <option value='Volvo'>Volvo</option>
+                    <option value='Saab'>Saab</option>
+                    <option value='VW'>VW</option>
+                    <option value='Ford'>Ford</option>
+                </select>
+                <p>The selected item is '<span id='t3poo8'></span>'.</p>
+            </td>
+            <td>
+                <select id='t3poi12' name='car[]' multiple>
+                    <option value='Volvo'>Volvo</option>
+                    <option value='Saab'>Saab</option>
+                    <option value='VW'>VW</option>
+                    <option value='Ford'>Ford</option>
+                    <option value='Hyundai'>Hyundai</option>
+                </select>
+                <p>The selected items are '<span id='t3poo12'></span>'.</p>
+            </td>
+        </tr>
+        <tr>
+            <td style='position: relative; left: 0px'>
+                <p>The value bound to t3pom13 is '<span id='t3poo13'></span>'.</p>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <br>
+    <h2>Test 2. JS to T3PO models</h2>
+    Enter a new value to be used for 't3pom2' (The 3rd text input): <input id='fromjs' type = 'text'></input> <button onclick='testfromjs()'>Enter</button>
+    <br>
+    Enter a new value to be used for 't3pom4' (Radio buttons): <input id='fromjs2' type = 'text'></input> <button onclick='testfromjs2()'>Enter</button>
+    <br>
+    Enter a new value to be used for 't3pom5' (Checkboxes): <input id='fromjs3' type = 'text'></input> <button onclick='testfromjs3()'>Enter</button>
+    <br>
+    Enter a new value to be used for 't3pom7' (Textarea): <input id='fromjs4' type = 'text'></input> <button onclick='testfromjs4()'>Enter</button>
+    <br>
+    Enter a new value to be used for 't3pom8' (Select - single): <input id='fromjs5' type = 'text'></input> <button onclick='testfromjs5()'>Enter</button>
+    <br>
+    Enter a new value to be used for 't3pom12' (Select - multiple): <input id='fromjs12' type = 'text'></input> <button onclick='testfromjs12()'>Enter</button>
+    <br>
+    Enter a new value to be used for 't3pom13' (no input): <input id='fromjs13' type = 'text'></input> <button onclick='testfromjs13()'>Enter</button>
+    <br>
+    <br>
+    <h2>Test 3. T3PO models to JS</h2>
+    <p>This happens when a callback function is registered. The callback function is invoked when its model is updated.</p>
+    The value coming from 't3pom2': <p id = 'fromt3po' style='display:inline'></p><br>
+    The value coming from 't3pom13': <p id='fromt3po2' style='display:inline'></p><br>
+</body>
+</html>

@@ -1,0 +1,30 @@
+
+
+<script src = 'https://cs.tru.ca/~mlee/T3PO/t3po_rev3.lib.js'></script>
+
+<p>
+    Number for x: <input id='ix'></input><br>
+    Number for y: <input id='iy'></input><br>
+    Sum: <span id='ox'></span>
+</p>
+<button id='tr1-button'>Add 5</button>
+
+<script>
+    var models = {'x':{initial:3}, 'y':{tojs:updatedXXX}};  //models is an objeccct has properties 'x' and 'y' as objects
+	
+    var inputs = [{id:'ix', model:['x'], event:['keyup']}, {id:'iy', model:['y'],event:['keyup']}];  //create inputs as an array contains objects
+	              //bind HTML view input:id='ix' to models property:['x'] via event:['keyup']
+	              //bind HTML view input:id='iy' to models property:['y']
+	
+    var outputs = [{id:'ox', model:['x','y'], expr:"'The sum is ' + (Number(T3PO.x) + Number(T3PO.y)) + '.'"}]; //create outputss as an array contains objects
+	              //bind HTML view span:id='ox' to models property['x' and 'y'], with data value expression as 'expr'
+    
+	var t3po = new Tru3PO(models, inputs, outputs);   // Create the Tru3PO object
+	
+    // for testing
+    $('#tr1-button').click(function() {
+        t3po.update('x', Number(t3po.get('x')) + 5);  // from-data-to-view binding
+    });                                               //t3po_object.update('models_porperty_x', bind_to 
+	
+    function updatedXXX() { alert("The model, iy, is updated in function updatedXXX(), buried in models property 'y'."); }  // from-view-to-data binding
+</script>

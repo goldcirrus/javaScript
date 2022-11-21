@@ -1,0 +1,22 @@
+<button id='tr2-button-a'>Create TruJS variable named 'a' with initial value 10</button><br>
+<button id='tr2-button-b'>Create TruJS variable named 'b' with initial value 20</button><br>
+<button id='tr2-button-add'>Add the two variables and dislay the result</button>
+
+
+<script>
+//trial 2
+$trujs = {};
+document.getElementById('tr2-button-a').addEventListener('click', function() {
+    $trujs['a'] = 10;
+});
+
+document.getElementById('tr2-button-b').addEventListener('click', function() {
+    $trujs['b'] = 20;
+});
+
+document.getElementById('tr2-button-add').addEventListener('click', function() {
+    alert($trujs['a'] + $trujs['b']);
+});
+
+</script>
+            

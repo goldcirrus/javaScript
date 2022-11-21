@@ -1,0 +1,27 @@
+
+Trial E1: Let's try to find all the models that are initialized with trujs-init. 
+We will search the <span>s within the <div> of turjs-app='E1App'
+
+<div trujs-app='E1App'>
+    <span trujs-init='$trujs.x = 10; $trujs.y = 20'></span>
+    <span trujs-init='$trujs.a = $trujs.x - $trujs.y'></span>
+</div>
+
+<script>
+    function getPropertiesValues(obj) {
+        let str = '';
+        for (let p in obj)
+            str += p + ":" + obj[p] + ", ";
+        return str;
+    }
+    
+    $trujs = {};
+    var spans_obj = document.querySelectorAll('div[trujs-app=E1App] span[trujs-init]');
+	for(let i=0;i<spans_obj.length;i++)
+	   eval(spans_obj[i].getAttribute('trujs-init'));
+        
+		
+		//in app ---------
+    alert( getPropertiesValues($trujs) );
+	
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+
+
+<body>
+
+<p>trial 1.7</p>
+<p id='tr1-7-id'>Love makes our surrounding better. click to invoke p-id. jquery </p>
+<p class='tr1-7-class'>Each day is unique and beautiful. click to invoke p-class callback</p>
+<p class='tr1-7-class'>Busyness has nothing to do with productivity. click to invoke p-class callback</p>
+
+<script>
+$('.tr1-7-class').click(function() {
+    alert(this.innerHTML);  // this is the HTMLElement on which the click event is triggered.
+});
+
+//--library----------
+
+function TRUjQ_test_id(id) {       //constructor function
+    alert("1. " + this);  // 1. this is [object Window], shows undefined
+    id = id.substring(1, id.length);
+    
+	return {                         //parent constructor function returns a object with property function: click()
+        click: function(callback) {
+            alert("2. " + this.innerHTML);  // 2.'this' is [object Object]. shows undefined. this is the object that is being returned
+            document.getElementById(id).addEventListener('click', function() {
+                                   alert("3. " + this.innerHTML);  // 'this' is [object HTMLParagraphElement], show the object that is clicked
+								   
+                                   // Need a trick to make callback belong to the current 'this'.
+								   this.__TRUjQ__callback = callback;    //'this' is an object, so we can add a property function to it: __TRUjQ__callback
+								              //this.__TRUjQ__callback does the same work as callback, but it is a property of object:'this'
+								   this.__TRUjQ__callback();             //invoke callback function, so in application, 4 'this' is the HTMLElement clicked 
+                                   });
+        }
+    }
+}
+
+//----in application, create TRUjQ_test_id object under Window
+TRUjQ_test_id('#tr1-7-id').click(function() {
+                             alert("4. " + this.innerHTML);  // this is [object HTMLParagraphElement],show the content of object identified by #id, event triggered when clicked
+                           });             //in applicatin, 'this' now is the object clicked('#tr1-7-id')
+</script>
+         
+
+
+
+</body>
+
+
+
+
+
+
+</html>

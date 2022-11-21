@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+
+
+<body>
+
+<p id='tr4-p' style='border:solid 1px Blue'>Wow!</p>
+<button id='tr4-button'>Hide it</button>
+
+<script>
+//in library ----------------------------------------
+
+    // Object constructor: to create _TRUjQ_htmlselector object, 
+	//when called, pass in argument = real document HTMLElement object name on page
+function _TRUjQ_htmlselector(selector) {
+    alert("a new _TRUjQ_htmlselector object is created: "+this);
+	
+    selector = selector.trim();
+    if (!selector.startsWith('.') && !selector.startsWith('#')) {
+        this.elements = document.getElementsByTagName(selector);
+    }    //array holding HTMLElement elements
+	
+    else if (selector.startsWith('.')) {
+        this.elements = document.getElementsByClassName(selector.substring(1, selector.length));
+    }     //array holding HTMLElement elements
+	
+    else {
+        if (document.getElementById(selector.substring(1, selector.length)) == null)
+            this.elements = [];     //empty array
+        else
+            this.elements = [document.getElementById(selector.substring(1, selector.length))]; //array holding one HTMLElement
+    }
+	    //create this.elements array to hold passed in HTMLElement objects from web page.
+		
+        //create _TRUjQ_htmlselector object's property function .click() to addEventListener on each HTMLElement object in this.document array.  
+    this.click = function(callback) {  //callback definition is in application
+        for (var i = 0; i < this.elements.length; i++) {   //loop through all HTMLElement in array
+            this.elements[i].addEventListener('click', function() {   //Inside the EventListener to invoke the callback function.
+                this.__TRUjQ__callback = callback;       //add __TRUjQ__callback property function to 'this' object to do callback operations
+                this.__TRUjQ__callback();                //invoke 'this' object's __TRUjQ__callback property function, not the original callback function
+            });                                           //'this' is the HTMLElement objects hold by this.element[i] array
+        }
+    }
+
+    this.hide = function() {
+        for (var i = 0; i < this.elements.length; i++) {
+            this.elements[i].style.display = 'none';       //this.enements is the array holding HTMLElement objects
+        }
+    };
+}
+
+function _TRUjQ_htmlelement(element) {   //when pass in argument of a HTMLElement, such as 'this'
+    alert("a new _TRUjQ_htmlelement object is created: "+this);
+	 
+    this.css = function(property, value) {
+        if (value == undefined) 
+            // This will return an empty string when the property is not specifically defined.
+            return window.getComputedStyle(element)[property];  // IE uses element.currentStyle instead
+        else 
+            element.style.setProperty(property, value);  // Set property
+    };  //; divide function's property member functions. 
+	
+    this.hide = function() {
+        if (getComputedStyle(element).display == 'none' || getComputedStyle(element).display == 'NONE')
+            return;
+        else {
+            element.style.display = 'none';       //DOM element has style property
+        }                                   //The style property returns a CSSStyleDeclaration object, which represents an element's style attribute.
+    };
+}
+
+function TRUjQ(x) {
+    if (typeof x == 'string')
+        return new _TRUjQ_htmlselector(x);
+    else if (x instanceof HTMLElement) 
+        return new _TRUjQ_htmlelement(x);  // If HTMLElement object
+}
+
+//in application -----------------------------
+
+TRUjQ('p').click(function() {                          //'p' is string, invoke _TRUjQ_htmlselector(elector);
+    TRUjQ(this).css('background-color', 'SkyBlue');   //'this' is a HTMLElement, invoke _TRUjQ_htmlelement(element);  
+	alert("this is "+this);                           //inside TRUjQ(this) to create an object of _TRUjQ_htmlelement to invoke its property funcion .css()
+});
+
+     //TRUjQ get argument as HTMLElement
+TRUjQ('#tr4-button').click(function() {             //'#tr4-button' is string, invoke _TRUjQ_htmlselector(elector);
+    TRUjQ('#tr4-p').hide();                         //inside TRUjQ() to create an object of _TRUjQ_htmlselector to invoke its property function .hide()
+});
+
+</script>
+         
+
+
+
+</body>
+
+</html>

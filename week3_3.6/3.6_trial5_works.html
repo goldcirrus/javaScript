@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+
+<body>
+
+
+<div id='tr5-app'>
+    a = <input id='tr5-model-a'  trujs-model='a' value='4'><br>
+    b = <input id='tr5-model-b'  trujs-model='b' value='20'><br>
+    a + b = <span id='tr5-bind' trujs-bind='a, b'>Number($trujs.a) + Number($trujs.b)</span><br>
+</div>
+
+
+<script>
+// library
+$trujs = {};  // each model --> value
+$trujs._expressions = {};  // each model -- [] of {output:..., expr:...}, i.e., a pair of output and expression
+
+function $trujs_update() 
+{  //input
+    let iObj_a = document.getElementById('tr5-model-a');
+    let model_a = iObj_a.getAttribute('trujs-model').trim();
+    $trujs[model_a] = iObj_a.value;
+    $trujs._expressions[model_a] = [];                 //model_a is 'a'
+	//alert($trujs[model_a]);
+	
+    let iObj_b = document.getElementById('tr5-model-b');
+    let model_b = iObj_b.getAttribute('trujs-model').trim();
+    $trujs[model_b] = iObj_b.value;
+    $trujs._expressions[model_b] = [];                 //model_b is 'b'
+	//alert(model_b);
+    
+	//output
+    let oObj = document.getElementById('tr5-bind');
+    let models = oObj.getAttribute('trujs-bind').trim().split(/, */);
+	alert(models);      //models is array: ['a','b']
+	
+    for (let i = 0; i < models.length; i++)
+        $trujs._expressions[models[i]].push({output: oObj, expr: oObj.innerHTML});
+		
+	alert(p);  //this line make the input binding works
+        
+    for (let m in $trujs._expressions) {  //for each model, update for any change: trujs model bind trujs-bind is input changes, let model=----model_name, then $trujs[dodel]=new_value,$trujs_expressions[model]=new_value, then output to expr, update in enventlistener: model_name, input_value, re-evaluate into output
+        for (let i = 0; i < $trujs._expressions[m].length; i++)  //m is model name: 'a', 'b', [i]get pushed in {output: oObj, expr: oObj.innerHTML}
+            {$trujs._expressions[m][i].output.innerHTML = eval($trujs._expressions[m][i].expr);}
+    }
+	
+    
+	//The below codes are useless 
+    iObj_a.addEventListener('keyup', function() {
+        let m = this.getAttribute('trujs-model').trim();  // get model 'a' because 'this' is <input> element for 'a'
+		
+		$trujs[m] = this.value;        //$trujs['a'] = its own <input> value
+		
+		 // update model
+        for (let i = 0; i < $trujs._expressions[m].length; i++)  // update expressions for each model, evaluate its values
+           $trujs._expressions[m][i].output.innerHTML=eval($trujs._expressions[m][i].expr);
+    });
+	
+	
+  //  ????  querySelectorAll('input[trujs-model]') to select attribute, find all input of this attribute, to add in an array. 
+}
+
+window.addEventListener('load', function() {
+    $trujs_update();
+});
+
+// app
+//$trujs_update();
+</script>
+
+
+</body>
+</html>
+                            

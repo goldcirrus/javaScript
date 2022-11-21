@@ -1,0 +1,59 @@
+trial 2.4
+
+<div id='tr2-4-app'>
+    a = <input id='tr2-4-model-a'  trujs-model='a' value='yop'><br>
+    b = <input id='tr2-4-model-b'  trujs-model='b' value='20'><br>
+    a + b = <span id='tr2-4-bind' trujs-bind='a, b'>Number($trujs.a) + Number($trujs.b)</span><br>
+</div>
+
+<script>
+// library
+$trujs = {};  // each model --> value
+$trujs._expressions = {};  // each model -- [] of {output:..., expr:...}, i.e., a pair of output and expression
+
+function $trujs_update() 
+{
+    let iObj_a = document.getElementById('tr2-4-model-a');
+    let model_a = iObj_a.getAttribute('trujs-model').trim();
+    $trujs[model_a] = iObj_a.value;
+    $trujs._expressions[model_a] = [];
+
+    let iObj_b = document.getElementById('tr2-4-model-b');
+    let model_b = iObj_b.getAttribute('trujs-model').trim();
+    $trujs[model_b] = iObj_b.value;
+    $trujs._expressions[model_b] = [];
+    
+    let oObj = document.getElementById('tr2-4-bind');
+    let models = oObj.getAttribute('trujs-bind').trim().split(/, */);
+    for (let i = 0; i < models.length; i++)
+        $trujs._expressions[models[i]].push({output: oObj, expr: oObj.innerHTML});
+}
+
+window.addEventListener('load', function() {
+    $trujs_update();
+});
+
+// app
+$trujs_update();
+</script>
+                     
+
+
+
+
+trial 3
+
+
+<button id='tr3-read-expression'>Read TruJS expression and evaluate it!</button><br>
+
+<span id='tr3-expression'>$trujs['a'] + $trujs.b</span><br>
+<span id='tr3-result'>Result here!</span><br>
+
+<script>
+document.getElementById('tr3-read-expression').addEventListener('click', function() {
+
+    let expression = document.getElementById('tr3-expression').innerHTML;
+    document.getElementById('tr3-result').innerHTML = eval(expression);
+	
+});
+</script>

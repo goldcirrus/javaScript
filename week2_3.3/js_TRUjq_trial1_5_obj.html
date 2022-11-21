@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id='tr1-div'>Very interesting topics!</div>
+
+
+
+<p>You can only feel the beauty.</pp>
+<p>Be Persistent.</p>
+<p id='tr1-5-id'>What's your priority?</p>
+<p class='tr1-5-class'>Never blame other people for your problems.</p>
+<p class='tr1-5-class'>Do to other what you would have them to do for you.</p>
+<p class='tr1-5-class'>ffffffffffffffffffffffff</p>
+
+<script>
+/*
+function TRUjQ(p) {
+    if (p == document) {
+        ...
+        return ...;
+    } else if (typeof p == 'string') {
+        ...
+        return ...;
+    } else if (p instanceof HTMLElement) { 
+        ...
+        return ...;
+    } else {
+        ...
+    }
+}
+*/
+
+//definiton of constructor function, eventhough it has no property.
+//function definition also create create objects. 
+function TRUjQ(x) {
+    if (x == document) { alert('document'); }
+    else if (typeof x == 'string') { alert('string'); }
+    else if (x instanceof HTMLElement) { alert('HTMLElement'); }
+    else { alert('something else'); }
+}
+
+TRUjQ.version = '0.0.1';   //only add a new property:version to the function name, not every object can access it. 
+TRUjQ.prototype.versontoall = '100.300';
+
+alert("TRUjQ.version via class name is "+TRUjQ.version);     //0.0.1
+
+let x = new TRUjQ("ss");
+alert("x version is "+x.version);            //undefined, without prototype, new property can not be added to each object
+alert("x versiontoall is "+x.versontoall)      //100.300
+
+TRUjQ(document);
+TRUjQ('div');
+TRUjQ(document.getElementById('tr1-div'));  // the div of id='tr1-div'
+
+
+
+
+// register an event listener for click over an element of id='tr1-5-id'
+var obj = document.getElementById('tr1-5-id');
+if (obj != null)
+    obj.addEventListener("click", function() { alert('id selection: ' + this.innerHTML); });
+
+// register event listeners for click over all <p> elements
+var objs = document.getElementsByTagName("p");
+for (let i = 0; i < objs.length; i++)
+  {                                   //add event handler to every element with class. They can all listen, but only clicked element can alert
+  objs[i].addEventListener("click", function() { alert('element selection: ' + this.innerHTML); });
+  }
+
+// register event listeners for click over all elements in class='tr1-5-class'
+var objes = document.getElementsByClassName("tr1-5-class");
+for (let i = 0; i < objes.length; i++)   //add event handler to every element with class. They can all listen, but only clicked element can alert
+{
+   objes[i].addEventListener("click", function(){ alert('class selection: ' + this.innerHTML); });
+}
+
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,38 @@
+<div id='tr2-4-app'>
+    a = <input id='tr2-4-model-a'  trujs-model='a'><br>
+    b = <input id='tr2-4-model-b'  trujs-model='b' value='20'><br>
+    a + b = <span id='tr2-4-bind' trujs-bind='a, b'>Number($trujs.a) + Number($trujs.b)</span><br>
+</div>
+
+<script>
+// library
+$trujs = {};  // each model --> value
+$trujs._expressions = {};  // each model -- [] of {output:..., expr:...}, i.e., a pair of output and
+
+function $trujs_update() 
+{
+    let iObj_a = document.getElementById('tr2-4-model-a');        //iObj_a is HTML input a
+    let model_a = iObj_a.getAttribute('trujs-model').trim();     //model_a is 'a'
+    $trujs[model_a] = iObj_a.value;                              //is $trujs['a']
+    $trujs._expressions[model_a] = [];                           //is $trujs._expressions['a']
+    
+    let iObj_b = document.getElementById('tr2-4-model-b');
+    let model_b = iObj_b.getAttribute('trujs-model').trim(); 
+    $trujs[model_b] = iObj_b.value;
+    $trujs._expressions[model_b] = [];
+    
+
+    
+    let oObj = document.getElementById('tr2-4-bind');  // multiple models
+    let models = oObj.getAttribute('trujs-bind').trim().split(/, */);  // split seperator: /, */
+    for (let i = 0; i < models.length; i++)
+        $trujs._expressions[models[i]].push({output: oObj, expr: oObj.innerHTML});
+}
+
+window.addEventListener('load', function() {
+    $trujs_update();
+}); // $trujs_update() when the document is fully loaded
+
+// app
+$trujs_update();
+</script>

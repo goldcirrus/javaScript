@@ -1,0 +1,44 @@
+<script>
+    function getStockValue(callback, ntimes) {
+        let sum = 0;
+        let count = 0;
+        for (let i = 0; i < ntimes; i++) 
+            $.get('get_stock_value.php', function(data) {
+                sum += Number(data);
+                count++;
+                if (count == ntimes)
+                    callback(sum / ntimes);
+            });
+        };
+    }
+    
+    getStockValue(function(data) {
+        alert(data);
+    }, 10);
+	
+		
+
+</script>
+
+//--below is mine
+<script>
+    function getStockValue(callback, ntimes) {
+       let sum=o;
+       let count=0;
+
+       for(let i=0;i<ntimes;i++) {
+           $.get('get_stock_value.php', function(data){
+             sum+=data;             
+           }
+           count++;
+           if(count==ntimes)
+             callback(sum/count);
+       }
+        
+    }
+
+
+    getStockValue(function(data) {
+        alert(data);
+    }, 10);
+</script>

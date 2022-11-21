@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+
+<p id='tr1-p'>Who is the owner of 'this' </p>
+<button id='tr1-button'>Click me!</button>
+
+<script>
+function type(x) {
+    if (x == window)        alert('window');
+    else if (x == document) alert('document');
+    else if (x instanceof HTMLElement) alert('HTMLElement and id is ' + x.id);
+    else alert('something else');
+}
+
+function foo() {
+    type(this);  // what is this? 'this' is 'window' because foo() is defined in the webpage
+}
+
+function goo(obj, callback) {
+    type(this);            // execute 2. 'this' is 'window' because goo is defined in the webpage
+    
+    foo();                //execute 3. 'this' is 'window' because foo() is defined in the webpage
+    
+    type(obj);            //Depends on the passed in argument's type when goo(obj,cbk ); is called. execute 4. 'obj' type  In below calling, it is the 'tr1-button' object clicked in eventlistener. 
+    
+    callback();          //invoke callback-->Depending on callback function's definition when goo(obj,cbk) is called.-->execute 5. is 'window'; execute 6. is HTMLElement-tr1-button; two 'this' belongs to the two argument/callback function's definition 
+    
+    // a very important trick
+    obj.__TRUjQ__callback = callback;     //both referes to callback function's definition, but owner now depends on who invokes the callback/argument function's definition when goo(obj,cbk); is invoked.  
+    obj.__TRUjQ__callback();              //invoke transformed callback-->execute: 7. 8. are both HTMLElement-tr1-button. Because obj.__TRUjQ__callback change window to object owner who invokes goo(obj,cbk); here is the $(button).click(goo());
+}
+
+
+//end of function definition
+
+//start app calling functions
+
+foo();                                 //this is window
+
+$('#tr1-button').click(function() {
+    type(this);                        // execute 1. loacl variable 'this' is HTMLElement, id is tr1-button because 'this' belongs to the owner: button clicked
+    
+    let this_button = this;           //store above 'this' value in another local vairable: this_button=HTMLElement
+	
+                    //calling function goo, passing above variable: 'this'=the tr1-button, and a callback function's definition
+	                                 //1st argument is the button; 
+    goo(this, function() {           //2nd argument is the callback function's definition
+        type(this);    // 'this' is inside callback functin's definition, execute 5. is 'window'(before obj.__TRUjQ__callback) !!callback function is defined in window so 'this' owner is 'window'; execute 7. is 'HTMLElement'-tr1-button because it is assigned to obj.__TRUjQ__callback, so the owner is changed to obj
+        type(this_button);  //insid callback function's definition  execute 6. is 'HTMLElement'; execute 8. is 'HTMLElement'
+    });                   //invoke function goo(obj,callback); and passing its callback function defintion as the 2nd argument
+});
+
+//!!!! callback function definition's 'this' owner is 'window', because callback function is defined within window
+//!!!! after obj.__TRUjQ__callback=callback; both refers to callback function's definition. But now callback function's 'this' belongs to the obj who invokes it, which is the button in the click eventlistener function, when obj.__TRUjQ__callback(); is invoked: $('#tr1-button').click(invoke goo());
+	   
+	   /*event listener for the click over the button:It is defined on the button HTMLElement object. $('#tr1-button').click();
+         
+         
+		 goo(this, callback):  // goo is defined in window.
+        
+         foo():  // foo is defined in window.
+            
+        
+         callback():  //it defined in window
+            
+          */
+</script>
+
+</body>
+</html> 

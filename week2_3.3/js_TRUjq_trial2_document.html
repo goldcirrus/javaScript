@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+<div id='tr2-div'>Message here!</div>
+
+
+<script>
+//-- library -------------------------------
+
+function _TRUjQ_document(thispreserved) {  // Object constructor, when called, pass in argument = real document HTMLElement object name on page
+    //alert("1. "+this);             //this is [object Object], should be TRUjQ object who invokes _TRUjQ_document
+                                                  //this.ready => refers to this object's property function
+	this.ready = function(callback) {              //this is [object Object] because constructor function is invoked in TRUjQ(x) definition
+        if (document.readyState == 'complete') {
+                             // callback();  // Should not be called directly. If so, the value of this in callback becomes different.
+                            // the thispreserved is the object passed in as argument to _TRUjQ_document() function
+            thispreserved.__TRUjQ__callback = callback;
+            thispreserved.__TRUjQ__callback();
+        } else {   //wait
+            window.addEventListener('load', function() {  // onload event on window; thispreserved should be used in the callback function.
+                thispreserved.__TRUjQ__callback = callback;
+                thispreserved.__TRUjQ__callback();
+            });
+        }
+    }
+	
+    this.click = function(callback) {
+        document.addEventListener('click', function() {
+                        //callback();  // It will not preserve 'this'. How to fix?			
+            thispreserved.__TRUjQ__callback = callback;
+            thispreserved.__TRUjQ__callback();
+        });
+    }
+}
+
+function TRUjQ(x) {       //object constructor. 
+    if (x==document)      //return an object of _TRUjQ_document(x)
+        alert("first: "+this);         //first: [object Window]
+		return new _TRUjQ_document(x);  // pass in argument as x; should NOT pass in argument as 'this'; 'this' is window.
+}
+
+//-- application ---------------------------
+
+TRUjQ(document).ready(function() {
+    document.getElementById('tr2-div').innerHTML = 'when document is ready, then ready(callback) trigger callback once: which is me. ';    //when document is ready, callback in ready(callback) is executed. 
+});
+
+TRUjQ(document).click(function() {
+    document.getElementById('tr2-div').innerHTML += (this == document ? 'yes, "this" is document' : '"this" is Not document') + '<br>';
+    document.getElementById('tr2-div').innerHTML += 'I am Clicked<br>';
+});
+
+</script>
+
+</body>
+
+
+
+
+
+
+</html>

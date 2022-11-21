@@ -1,0 +1,25 @@
+<div id='tr1-div'>Very interesting topics!</div>
+
+<script>
+      //create object class via constructor function
+function TRUjQ(x) {
+    if (x == document) alert('document');
+    else if (typeof x == 'string') alert('string');
+    else if (x instanceof HTMLElement) alert('HTMLElement');
+    else alert('something else');
+}
+
+TRUjQ.version = '0.0.1';
+
+//-----------------------------
+
+TRUjQ(document);                  //document,                  argument is document
+TRUjQ('div');                     //string,                    argument is a string
+TRUjQ(document.getElementById('tr1-div'));  //HTMLElement,     argument is the HTMLElement:<div> of id='tr1-div'
+
+alert(TRUjQ.version);         //0.0.1
+</script>
+
+
+
+

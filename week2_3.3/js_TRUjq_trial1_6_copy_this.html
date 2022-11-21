@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+
+
+
+</head>
+
+
+<body>
+<p>trial 1.6.</p>
+
+<p id='tr1-6-id'>click to invoke TRUjQ_test_id()</p>
+<p class='tr1-6-class'>click to alert(this.innerHTML) content in the clicked object 1</p>
+<p class='tr1-6-class'>click to alert(this.innerHTML) content in the clicked object 2</p>
+
+
+
+</body>
+
+
+<script>
+$('.tr1-6-class').click(function() {
+    alert(this.innerHTML);  // this is the content in the object on which the click event is triggered.
+});
+
+
+
+function TRUjQ_test_id(id) {
+    alert("1." + this.innerHTML);  // 1.undefined, 'this' is the [object Window] because function TRUjQ_test_id(id) is defined in window, its innerHTML is undefined
+    id = id.substring(1,id.length);;  // remove '#' from id
+    
+	return {             // when TRUjQ_test_id(argument); is invoked,it returns an object has property function definition: click(callback) 
+            click: function(callback) {             
+                        alert("2. " + this.innerHTML);  // 2.undefined. 'this' is [object Object] because click(callback) is defined inside an object refered/created by invoked function:TRUjQ_test_id(argument);
+                        document.getElementById(id).addEventListener('click', function() {       //addEventListener on the object identified by #id. click(callback) has access to parent function's private variable:id
+                                      alert("3. " + this.innerHTML);  // 3.content in the object clicked and listened by eventlistener. 
+									  //'this' is the object refered by document.getElementById(id):[object HTMLParagraphElement]
+                                      //'this' is the object to be clicked
+									  callback();  // invoke the callback function that is passed to click()
+                                      });
+            }
+    }
+}
+
+TRUjQ_test_id('#tr1-6-id').click(function() {      //TRUJQ is called here, the click's argument is the callback's realfunction definition
+                               alert("4. " + this.innerHTML);     //4. undefined. 'this' is [object Window] because it is defined inside callback function within click(callback)
+							});
+
+</script>
+
+<p>when TRUjQ_test_id('argument_some_element_onweb'); is invoked, 
+it returns an anonymous object has click(argument_real_callback_definition); function can be invoked. 
+the 'argument_real_callback_definition' defines what really to do when the event happens. </p>
+   
+   
+<p>inside click(callback_parameter_keyword) function definition, first addEventListener on the 'argument_some_element_onweb' 
+   because by closures technique, it(the click function) can access its parent function's private variable:id. 
+   then, when event happens on 'argument_some_element_onweb', callback keyword is invoked.    
+</p>
+
+
+</html>

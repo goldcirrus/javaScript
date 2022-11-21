@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+<p style='border:solid 1px Red'>You look great today.</p>
+<p id='tr3-p' style='border:solid 1px Blue'>You are a fantastic student.</p>
+<p class='tr3-p' style='border:solid 1px Green'>You have the best style.</p>
+
+<script>
+//---library--------------------
+          // Object constructor: to create _TRUjQ_document object, when called, pass in argument = real document HTMLElement object on page
+function _TRUjQ_document(thispreserved) {  
+    this.ready = function(callback) {                   //_TRUjQ_document object's property function .ready()
+        if (document.readyState == 'complete') {
+            thispreserved.__TRUjQ__callback = callback;
+            thispreserved.__TRUjQ__callback();
+        } else 
+            window.addEventListener('load', function() {  // onload event on window
+                thispreserved.__TRUjQ__callback = callback;
+                thispreserved.__TRUjQ__callback();
+            });
+    }
+}
+
+
+                             // Object constructor: to create _TRUjQ_htmlselector object, when called, pass in argument = real document HTMLElement object name on page
+function _TRUjQ_htmlselector(selector) {  // Let's assume for the simplicity that selector is just an HTML element type, e.g., p, or id, or class.
+    selector = selector.trim();      //passed in arugument is the name of HTMLElement objects on webpage
+	      //create this.__TRUjQ_elements array to hold passed in HTMLElement objects from web page. 
+    if (!selector.startsWith('.') && !selector.startsWith('#')) { // A specific HTML element type selector, e.g., 'p'; slector should not start with '.' nor '#'
+        this.__TRUjQ_elements = document.getElementsByTagName(selector);  // Get the result: this.__TRUjQ_elements refers to an array holding HTMLElement objects by the same tag name returned from document.getElementByTagName()
+    }
+	                                        // How to get element by id?
+                                            // How to get elements by class name?
+                                            // How to distinguish three different types of selectors? Html type, id, class.
+                                            // document.getElementsByTagName(selector); returns an array
+			  
+    else if (selector.startsWith('.')) {  // Class selector; selector start with '.', result: this.__TRUjQ_elements refers to an array to hold all HTMLElement objects with the same .class name
+        this.__TRUjQ_elements = document.getElementsByClassName(selector.substring(1, selector.length));
+    }                           // document.getElementsClassName(selector.substring(1,selector.length)); returns an array
+    
+	else {                      // Id selector; selector start with '#', only one HTMLElement object returned from document.getElementById()
+        this.__TRUjQ_elements = []; // Need to remember that this.__TRUjQ_elements is an array. Here, just one element.
+        if (document.getElementById(selector.substring(1, selector.length)) != null)
+            this.__TRUjQ_elements[0] = document.getElementById(selector.substring(1, selector.length));
+    }
+    
+	  //create _TRUjQ_htmlselector object's property function .click() has a callback function for what to do(not the addEventListener, but inside the addEventListener) when invoked. 
+    this.click = function(callback) {
+        for (var i = 0; i < this.__TRUjQ_elements.length; i++) {        //addEventListener to each HTMLElement object hold by array __TRUjQ_elements[i]
+            this.__TRUjQ_elements[i].addEventListener('click', function() {   
+                this.__TRUjQ__callback = callback;                  //callback is invoked within addEventListener
+                this.__TRUjQ__callback();
+            });
+         }
+    }
+}
+
+//app starts from calling: TRUjQ(x)
+function TRUjQ(x) {
+    if (x == document) {
+        return new _TRUjQ_document(x);
+    }
+    else if (typeof x == 'string') 
+        return new _TRUjQ_htmlselector(x);
+}
+
+//--application---------------------------
+
+TRUjQ(document).ready(function() {
+
+    TRUjQ('p').click(function() {
+        alert('Wow! Interesting! Tag selection, ' + this.innerHTML);
+    });
+	
+    TRUjQ('#tr3-p').click(function() {
+        alert('Wow! Interesting! Id selection, ' + this.innerHTML);
+    });
+	
+    TRUjQ('.tr3-p').click(function() {
+        alert('Wow! Interesting! Class selection, ' + this.innerHTML);
+    });
+	
+});
+</script>
+
+
+</body>
+
+</html>

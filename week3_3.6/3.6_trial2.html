@@ -1,0 +1,25 @@
+
+
+
+<button id='tr2-button-a'>Create TruJS variable named 'a' with initial value 10</button><br>
+<button id='tr2-button-b'>Create TruJS variable named 'b' with initial value 20</button><br>
+<button id='tr2-button-add'>Add the two variables and display the result using alert()!</button>
+
+<script>
+$trujs = {};  // create an object to hold each model as its property. --> value
+
+document.getElementById('tr2-button-a').addEventListener('click', function() {
+    let modelA = 'a';
+    $trujs[modelA] = 10;
+});
+
+document.getElementById('tr2-button-a').addEventListener('click', function() {
+    let modelB = 'b';
+	$trujs[modelB] = 20;
+});
+
+document.getElementById('tr2-button-add').addEventListener('click', function() {
+    alert($trujs['a'] + $trujs['b']+"first");   //display object $trujs each property(model)'s value
+	alert($trujs[modelA] + $trujs[modelB]+"second");  //this does not work becaue modelA is another local variable defined outside of this function
+});
+</script>

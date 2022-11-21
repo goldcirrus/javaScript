@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript in Body</h2>
+
+<p id="demo"><a href="https://www.phpied.com/3-ways-to-define-a-javascript-class/">3 ways to create js object</a></p>
+
+<script>
+var apple = new function() {
+    this.type = "macintosh";
+    this.getInfo = function () {
+        return this.color + ' ' + this.type + ' apple';
+    };
+}
+apple.color = "reddish";
+alert(apple.getInfo());
+
+
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,14 @@
+<script src="https://cs.tru.ca/~mlee/comp4620/Software/TruJS.min.js"></script>
+
+x = <input trujs-model='x'><br>
+y = <input trujs-model='y'><br>
+x + y = <span trujs-bind='x, y'>Number($trujs['x'])+Number($trujs['y']) </span><br>
+x + y = <span trujs-bind='x, y'>Number($trujs.x)+Number($trujs.y) </span>
+
+<!-- 
+The next code is used just for testing. 
+Without it, Trial 1 would not work, because the TruJS library scans all the elements only with the 'onload' event on 'window'.
+-->
+<script>
+$trujs_init();
+</script>

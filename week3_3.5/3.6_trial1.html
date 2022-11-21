@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2> <a href=https://cs.tru.ca/~mlee/comp4620/Software/test_trujs.html> https://cs.tru.ca/~mlee/comp4620/Software/test_trujs.html </a> </h2>
+
+<script src="https://cs.tru.ca/~mlee/comp4620/Software/TruJS.min.js"></script>
+
+...
+<span trujs-init='$trujs.b = 20'></span>
+<span trujs-init=''>$trujs.c = 30</span>
+
+Name 1: <input type='text' trujs-model='x' value=''></input><br>
+Name 2: <input type='text' trujs-model='y' value='TruJS'></input><br>
+Name 3: <input type='text' trujs-model='z' value='Fun'></input><br>
+<br>
+
+<div>
+Wow!<br><br>
+
+Name 1: <span trujs-bind='x'>$trujs.x</span><br>     <!-- '$trujs.x' to be evaluated whenever trujs.x is updated. -->
+Name 2: <span trujs-bind='y'></span><br>             <!-- no expression -->
+Name 2: <span trujs-bind=''>$trujs.y</span><br>      <!-- '$trujs.y' to evaluated only once because trujs-bind does not include y. -->
+Name 2: <span >$trujs.y</span><br>                   <!-- no evaluation because trujs-bind is not defined. -->
+Name 1 + Name 3: <span trujs-bind='x, z'>var a = 10; $trujs.b++; a + ", " + $trujs.b + ", " + $trujs.c + ", " + $trujs.x + ", " + $trujs.z.toUpperCase()</span><br>
+</div>                 
+               <!-- because span bind to 'x,z', so every change to input with 'x,z' will trigger $trujs.b++ -->
+
+<!-- 
+The next code is used just for testing. 
+Without it, Trial 1 would not work, because the TruJS library scans all the elements only with the 'onload' event on 'window'.
+-->
+<script> $trujs_init(); </script>
+
+
+</body>
+</html>

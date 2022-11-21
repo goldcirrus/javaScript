@@ -1,0 +1,35 @@
+
+
+Trial 2.1: Let's read TruJS variables from < span >s with trujs-init and save them in $trujs object's properties: a,b
+Let's evaluate an expression that uses the two TruJS variables:a,b. How to do it? use: eval();
+
+TruJS model a: <span id='tr2-1-model-a'  trujs-init='$trujs.a = 10;'>initial a model variable: $trujs.a</span><br>
+TruJS model b: <span id='tr2-1-model-b'  trujs-init='$trujs.b = 20;'>initial a model variable: $trujs.b</span><br>
+
+a + b = <span id='tr2-1-bind' trujs-bind='a, b'>$trujs.a + $trujs.b</span><br>
+
+        //bind which model vairalbes to output < span > 
+
+<button id='tr2-1-button-read'>Read the above two TruJS models and save them!</button><br>
+<button id='tr2-button-add'>Add the two variables and display the result!</button>
+
+
+<script>
+$trujs = {};  // create a $trujs object to hold each model variables as its properties --> value
+
+/*The getAttribute() method is used to get the value of an attribute of the particular element. 
+If the attribute exists, it returns the string representing the value of the corresponding attribute. 
+If the corresponding attribute does not exist, it will return an empty string or null.
+
+eval(string) ---convert string to executable expression
+eval('2 + 2') return 4 */
+document.getElementById('tr2-1-button-read').addEventListener('click', function() {
+    eval(document.getElementById('tr2-1-model-a').getAttribute('trujs-init'));   //initial a model variable: $trujs.a convert from string to number
+    eval(document.getElementById('tr2-1-model-b').getAttribute('trujs-init'));    //initial a model variable: $trujs.b
+});
+
+document.getElementById('tr2-1-button-add').addEventListener('click', function() {
+    document.getElementById('tr2-1-bind').innerHTML = eval(document.getElementById('tr2-1-bind').innerHTML);
+	  //output span's content=its innerHTML = trujs-bind='a,b' expression:$trujs.a + $trujs.b coming form TruJS property data variables
+});
+</script>

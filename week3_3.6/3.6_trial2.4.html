@@ -1,0 +1,54 @@
+
+<div id='tr2-4-app'>
+    a = <input id='tr2-4-model-a'  trujs-model='a'><br>
+    b = <input id='tr2-4-model-b'  trujs-model='b' value='20'><br>
+	
+    a + b = <span id='tr2-4-bind' trujs-bind='a, b'>Number($trujs.a) + Number($trujs.b)</span><br>
+</div>
+
+<script>
+// library
+$trujs = {};  // each model data variable is its property --> value
+$trujs._expressions = {};  // each model is its property -- [] of {output:..., expr:...}, i.e., a pair of output and expression
+
+function $trujs_update() 
+{
+    let iObj_a = document.getElementById('tr2-4-model-a');      //iObj_a = HTML view element <input for 'a'>
+    let model_a = iObj_a.getAttribute('trujs-model').trim();    //model_a = 'a'
+    $trujs[model_a] = iObj_a.value;                             //$trujs['a'] = <input for 'a'>'s value
+	
+    $trujs._expressions[model_a] = [];                     //$trujs._expressions['a'] = empty array;
+	
+    let iObj_b = document.getElementById('tr2-4-model-b');        //iObj_b = HTML view element <input for 'b'>
+    let model_b = iObj_b.getAttribute('trujs-model').trim();      //model_b = 'b'
+    $trujs[model_b] = iObj_b.value;                               //$trujs['b'] = <input for 'b'>'s value
+	
+    $trujs._expressions[model_b] = [];                    //$trujs._expressions['b'] = empty array;
+    
+    let oObj = document.getElementById('tr2-4-bind');                   //oObj = HTML view element as output <span>
+    let models = oObj.getAttribute('trujs-bind').trim().split(/, */);   //models = returned array: ['a', 'b'] ('a','b' are variables hoding values)
+    
+	for (let i = 0; i < models.length; i++)
+	                                                   //alert(models[i]);  //models[0] is 'a', models[1] is 'b'
+        $trujs._expressions[models[i]].push({output: oObj, expr: oObj.innerHTML});
+}
+
+/* $trujs._expressions['a'].push({output:HTML view output <span> element object, expr: output<span> element's innerHTML);
+                            push() method adds a new object to the end of $trujs._expressions['a'] array.
+   $trujs._expressions['b'].push({output:HTML view output <span> element object, expr: output<span> element's innerHTML);
+                            push() method adds a new object to the end of $trujs._expressions['b'] array*/
+
+/*split() method splits a string into an array of substrings, returns the new array, does not change the original string
+string.split(separator, limit)
+The split() method divides a String into an ordered list of substrings, puts these substrings into an array, 
+and returns the array.  The division is done by searching for a pattern; where the pattern is provided as the first parameter 
+in the method's call.*/
+
+window.addEventListener('load', function() {
+    $trujs_update();
+});
+
+// app
+$trujs_update();
+</script>
+                                

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript in Body</h2>
+
+<p id="demo"></p>
+
+<script>
+function Apple (type) {                     // This is similar to the definition of a class in Java.
+                                            // The keyword is function, not class. A function is a constructor that is instantiated later.
+    this.type = type;        // this.type: global; type: local
+    this.color = "red";
+    this.getInfo = function() {
+        return this.color + ' ' + this.type + ' apple';
+    };
+};
+
+var apple = new Apple('macintosh');  // keyword 'new' to create an object
+apple.color = "reddish";
+alert(apple.getInfo());
+
+//-----------------------------------------------------------
+
+function Car (type, color) {
+    this.type = type;
+    this.color = color;
+};
+
+var passat = new Car('passenger', 'black');
+
+Car.prototype.size = 'small';
+Car.prototype.getInfo = function() {               // Car.prototype changes every object in the class
+    return this.color + ' ' + this.type + ' car';
+};
+
+var golf = new Car('passenger', 'silver');
+alert(golf.getInfo());
+alert(passat.getInfo());  // ???
+
+
+</script>
+
+</body>
+</html> 

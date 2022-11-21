@@ -1,0 +1,60 @@
+<div>Trial E2: Following E1, let's find all the models with trujs-model. 
+If the model already exists and the value of the model in '< input >' is not defined, 
+then the model is not created again and the value in the < input > is updated with the value of the model. 
+(How to check if the 'value' in an < input > is not defined?)
+</div>
+
+
+<div trujs-app='E1App'>
+    <span trujs-init='$trujs.x = 10; $trujs.y = 20'></span>
+    <span trujs-init='$trujs.a = $trujs.x - $trujs.y'></span>
+</div>
+
+<div trujs-app='E2App'>
+    x = <input trujs-model='x'><br>
+    z = <input trujs-model='z'><br>
+</div>
+
+
+<script>
+     function getPropertiesValues(obj) {
+        let str = '';
+        for (let p in obj)
+            str += p + ":" + obj[p] + ", ";
+        return str;
+    }
+	
+	$trujs={};
+	
+	var spans_obj = document.querySelectorAll('div[trujs-app=E1App] span[trujs-init]');
+	for(let i=0;i<spans_obj.length;i++)
+	   eval(spans_obj[i].getAttribute('trujs-init'));
+	   
+	   //--below teacher codes
+	var objs = document.querySelectorAll('div[trujs-app=E2App] input[trujs-model]');
+    for (let i = 0; i < objs.length; i++) {
+        let model = objs[i].getAttribute('trujs-model').trim();
+        if ($trujs[model] != undefined && objs[i].value == '')
+            objs[i].value = $trujs[model];
+        else
+            $trujs[model] = objs[i].value;
+    }
+	
+	//--below my codes
+	var inputs_obj = document.querySelectorAll('div[trujs-app=E2App] input[trujs-model]');
+	for(let i=0;i<inputs_obj.length;i++){
+	    let model = inputs_obj[i].getAttribute('trujs-model').trim();
+		if($trujs[model] != undefined && inputs_obj[i].value=='')            //if(model is already initialized in trujs-init 并且 no user input)
+		      inputs_obj[i].value = $trujs[model];                                //input的value被赋值initialized value
+	    else
+		      $trujs[model]=inputs_obj[i].value;                            //else: $trujs['variable']赋值=user's input value
+	}
+	   
+	
+	
+	
+	//in app ------
+    alert(getPropertiesValues($trujs));
+	
+</script>
+

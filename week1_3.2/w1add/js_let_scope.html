@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+
+
+<script>
+
+for (var i = 0; i < 3; i++) {
+    let x = 1;
+	console.log("Inside the loop x:", x);
+	x=x+1;
+}
+
+console.log("Outside the loop, x:", x);
+
+//x declared inside of function increase() scope, local, not global
+function increase(){
+    for (var i = 0; i < 5; i++) {
+	     let y = 1;
+	     console.log("Inside the loop, y:", y);
+		 y++;
+    }
+}
+
+increase();   //x inside function
+
+console.log("Outside the loop, y:", y);  //y can not be accessed here. 
+
+
+//var is function scope, if declared outside of any block, var is global scope
+
+//let is block scope, usually used insdie loops, if conditions
+//let don't get added to window object even declared outside of any block. 
+</script>
+
+</body>
+</html> 

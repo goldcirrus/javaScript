@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Objects</h2>
+
+<p id="demo"></p>
+
+<p id="kk"></p>
+
+<script>
+          //create object class Person by constructor function
+function Person(x) {
+  if (x == document) { alert("create an object via constructor function and it is "+'document'); }
+    else if (typeof x == 'string') { alert("create an object via constructor function and it is "+'string'); }
+    else if (x instanceof HTMLElement) { alert("create an object via constructor function and it is "+'HTMLElement'); }
+    else { alert("create an object via constructor function and it is "+'something else'); }
+}
+
+//without prototype, new property is only added to the Constructor name, not accessed by each object. 
+Person.version = "0.2.3";     //add a new property only to the class name, not very object of the class, unless use prototype. 
+alert('show version via Class name: '+Person.version);      //alert will get version value via class name
+
+const myFather = new Person("John");         //have alert. 
+alert("myFather is an object, his version can not be shown: "+myFather.version);     //alert won't get version value. 
+
+
+//with prototype to make the property available to be added in the constructor function. 
+Person.prototype.secondversion = '0.2.3.6';
+
+const myMother = new Person("mom");
+alert("myMother is an object, her version can be shown: " + myMother.secondversion);
+
+</script>
+
+</body>
+</html>

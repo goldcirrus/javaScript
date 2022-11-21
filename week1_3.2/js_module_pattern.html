@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Module Pattern: hide object's local variable</h2>
+
+<p id="demo"></p>
+
+<script>
+//We can hide public variables with a module pattern. The object person returned from parent function(anonymous) has pribate variables: hide name and age.
+//closures, Parent function is anonymous function invoked here. 
+var person = (function(n, a) {  // closure's parent function. What value does person have? function() { ... or the returned function?
+                                // What is (function() { ... })();? -->parent Function invocation
+    var name = n;  //object person's local variable:name and age are private variables, can only be accessed though below, person object's property functions
+    var age = a;
+    
+	//return an object, so person refer to this object
+	return {                       // returned child function definition which is a object's constructor refered by variable object:person
+        first_name: name,          //public first_name is assgined the value from var name. 
+        get_name: function() { return name; },  // NOT this.name
+        set_name: function(new_name) { name = new_name; },
+        get_age: function() { return age; },  // NOT this.age
+        set_age: function(new_age) { age = new_age; }
+    };
+})('Tim', 22);     //end of closure's parent function's calling. pass in argument: ('Tim' and 22) into anonymous Parent function(n,a){....}
+
+//Parent function must be called to return a child object contains property functions to access parent function's private variables:name and age. 
+
+
+alert(person.age);  // undefined; because 1. age is a local variable to parent function, it is hidden. 2. variable person refers to child function's definition
+                               
+person.name = 'Gildong';  // This name is not the private variable name. Because object person is here added a new property:name
+alert(person.first_name);  // 'Tim'. because person refers to the child function which is a object's constructor function
+
+person.first_name = 'Gildong';  // This first_name is the public variable first_name.
+alert(person.first_name);  // 'Gildong'; It does not change the private variable.
+
+alert(person.get_name());  // 'Tim', person refers to the child function definition which can access its parent function's local vairable: name and age. 
+                           //get_name access parent function's local variable: name
+						   
+alert(person.get_age());   //22  get_age access parent function's local vairable: age
+
+person.set_age(24);         //set_age access parent function's local variable: age
+alert(person.get_age());   //24
+
+
+</script>
+
+</body>
+</html> 

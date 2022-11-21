@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+
+
+<button id='tr3-button'>Click me to test the above code! using closure to get 1,2,3</button>
+
+<script>
+function foo(lists) {       
+    var fts = [];
+	
+    for (var i = 0; i < lists.length; i++) {
+        var p = lists[i];   //p is shared by all list[i] elements, so p get value of last lists[i] element's value in the end of loop, 
+		                    //however, the child function create unique parameter p in each loop to hold lists[i]'s different elements value in each loop round
+        
+		fts[i] = (function(x) {             //fts[i] is the parent anonymous function, invoked once here in each loop. Because invoked in each loop, so take above variable p's value as argument differently(real time) in each loop, passing to child function's each parameter 
+                     return function() {    //return child function
+                            alert("in foo's fts[i]'s returned child funciton: " + x);  // What will be printed? 1,2,3. Note that p is a different closure variable.
+                                                       // This x inside alert(x) is not the will be the argument p when parent function is invoked here.  var p=lists[i]
+                     }
+                 })(p);  //invoke parent function here, pass in argument (p); which is p=lists[i], 
+				         //in each loop, the p's value is different, so alert() display x with real time different p's value. 
+    }
+	
+    return fts;  //fts is an array, its elements fts[i] are returned child function's definitions from parent function fts[i]();
+}
+
+function goo() {
+    var lists = [1, 2, 3];
+	
+    var fts_return = foo(lists);   //invoke foo(lists) return an array with its elements:fts[i] are returned child function's definitions from parent function fts[i]();
+	
+    for (var i = 0; i < fts_return.length; i++)
+        fts_return[i]();  // invoke array's element child function's definition here. What will be printed? 1, 2, and 3 
+}
+                   //fts[i] refers to the definition of child function, which is returned by the execution of the parent function. 
+	          
+$('#tr3-button').click(function() { goo(); });
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>!JavaScript Module Pattern: hide parent function's variables</h2>
+
+<p id="demo">Student variables name and id are private</p>
+
+<script>
+// In a library
+//we can hide variable name, id with modle pattern. 
+//the object returned from parent function:Student() has private variable name and id. 
+//closures, parent function must be called to return a child object
+function Student(initial_name, initial_id) {
+    let name = initial_name;        //local and private hiden in parent function
+    let id = initial_id;            //local and private hiden in parent function
+    
+	return {                        //returned child function constructs a new object contains property functions can access parent's private variables
+        setName: function (new_name) { name = new_name; },  //public function in returned child function can access parent function's private variables
+        getName: function () { return name; },               //public function in returned child function can access parent function's private variables
+        setId: function (new_id) { id = new_id; },           //public function in returned child function can access parent function's private variables
+        getId: function () { return id; }                    //public function in returned child function can access parent function's private variables
+    }
+}
+
+// In an app
+let name = prompt("Name: ");   //user input stored in variable:name
+let id = prompt("Id: ");       //user input stored in variable:id
+
+//Parent function: Student() called to create a Student object WITHOUT new keyword. works only because constructor Student return a child function
+//literally, invoked parent function: Student(name,id); returns the child function here, which is a object has its property functions to access its parent function's private variables:name and id
+let student = Student(name, id);  // Parent function Student(); called. Create a new Student object contains public property functions can access Parent Consturctor function's private variables:name and id
+
+alert(student.getName() + ", " + student.getId());  // display the student's name and id
+alert(student.name);  // accessible? no, it is undefined, parent function's variable name is private, can be accessed via returned object's property function
+
+</script>
+
+</body>
+</html> 

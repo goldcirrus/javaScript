@@ -1,0 +1,32 @@
+
+<p id='tr1-6-id'>We're happy because we laugh.</p>
+<p class='tr1-6-class'>Learn to say 'Yes'.</p>
+<p class='tr1-6-class'>Busy your mind with positive thoughts.</p>
+
+<script>
+$('.tr1-6-class').click(function() {
+    alert(this.innerHTML);  // this is the HTMLElement on which the click event is triggered.
+});
+
+
+function TRUjQ_test_id(id) {
+    alert("1. " + this.innerHTML);  // undefined
+    id = id.substring(1, id.length);
+	
+    return {
+        click: function(callback) {
+            alert("2. " + this.innerHTML);  // undefined: the object that is being returned
+            
+			document.getElementById(id).addEventListener('click', function(eobj) {       //eobj argument is from addEventListener on the HTMLElement
+                alert("3. " + this.innerHTML);  // contentj of the obeject that is clicked
+                callback(eobj);                 
+            });
+        }
+    }
+}
+                                  
+TRUjQ_test_id('#tr1-6-id').click(function(eobj) {     //the callback definition is here
+    alert("4. " + this.innerHTML);  // undefined
+    alert("5. " + eobj.target.innerHTML);  // content of tr1-6-id
+});
+</script>

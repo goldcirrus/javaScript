@@ -1,0 +1,48 @@
+<div id='tr6-app'>
+    a = <input id='tr6-model-a' trujs-model='a'><br>
+    b = <input id='tr6-model-b' trujs-model='b' value='20'><br>
+    a + b = <span id='tr6-bind' trujs-bind='a, b'>Number($trujs.a) + Number($trujs.b)</span><br>
+</div>
+<script>
+// library
+$trujs = {};  // each model --> value
+$trujs._expressions = {};  // each model -- [] of {output:..., expr:...}, i.e., a pair of output and expression
+
+function $trujs_update() 
+{
+    let inputs = document.getElementById('tr6-app').querySelectorAll('input[trujs-model]');
+    for (let i = 0; i < inputs.length; i++) {
+        let model = inputs[i].getAttribute('trujs-model').trim();
+        $trujs[model] = inputs[i].value;
+        $trujs._expressions[model] = [];
+    }
+    
+    let outputs = document.getElementById('tr6-app').querySelectorAll('[trujs-bind]');//.getAttribute('trujs-bind').trim().split(/, */);
+    for (let i = 0; i < outputs.length; i++) {
+        localVars = outputs[i].getAttribute('trujs-bind').trim().split(/, */);
+        for (let m = 0; m < localVars.length; m++)
+            $trujs._expressions[localVars[m]].push({output: outputs[i], expr: outputs[i].innerHTML});
+    }
+    
+    for (let m in $trujs._expressions) {
+        for (let i = 0; i < $trujs._expressions[m].length; i++)
+            $trujs._expressions[m][i].output.innerHTML = eval($trujs._expressions[m][i].expr);
+    }
+    
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('keyup', function() {
+            let m = this.getAttribute('trujs-model').trim(); 
+            $trujs[m] = this.value; 
+            for (let i = 0; i < $trujs._expressions[m].length; i++) 
+                $trujs._expressions[m][i].output.innerHTML = eval($trujs._expressions[m][i].expr);
+        });
+    }
+}
+
+window.addEventListener('load', function() {
+    $trujs_update();
+});
+
+// app
+$trujs_update();
+</script>

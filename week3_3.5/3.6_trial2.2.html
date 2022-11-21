@@ -1,0 +1,20 @@
+TruJS model a: <input id='tr2-2-model-a'  trujs-model='a'><br>
+TruJS model b: <input id='tr2-2-model-b'  trujs-model='b' value='20'><br>
+
+<button id='tr2-2-button-read'>Read the above two TruJS models and save them!</button><br>
+<button id='tr2-2-button-add'>Add the two variables and dislay the result</button>
+
+<script>
+$trujs = {};   // each model --> value
+document.getElementById('tr2-2-button-read').addEventListener('click', function() {
+    $trujs[document.getElementById('tr2-2-model-a').getAttribute('trujs-model').trim()] = 
+        document.getElementById('tr2-2-model-a').value;
+    $trujs[document.getElementById('tr2-2-model-b').getAttribute('trujs-model').trim()] = 
+        document.getElementById('tr2-2-model-b').value;
+});
+
+document.getElementById('tr2-2-button-add').addEventListener('click', function() {
+    alert(Number($trujs['a']) + Number($trujs['b']));
+});
+</script>
+                             

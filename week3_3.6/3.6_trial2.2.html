@@ -1,0 +1,35 @@
+
+Trial 2.2: Let's read TruJS variables from < input >s with trujs-model and save them in $trujs
+
+
+TruJS model a: <input id='tr2-2-model-a'  trujs-model='a'><br>
+TruJS model b: <input id='tr2-2-model-b'  trujs-model='b' value='20'><br>
+
+
+<button id='tr2-2-button-read'>Read the above two TruJS models and save them!</button><br>
+<button id='tr2-2-button-add'>Add the two variables and dislay the result</button>
+
+
+<script>
+$trujs = {};  // create global object $trujs object to hold model data variables. each model --> value
+$trujs._expressions ={};  //must be global object accessable by all functions to contain several properties
+
+document.getElementById('tr2-2-button-read').addEventListener('click', function() {
+
+    let model = document.getElementById('tr2-2-model-a').getAttribute('trujs-model').trim();    //model = 'a';
+    $trujs[model] = document.getElementById('tr2-2-model-a').value;                             //$trujs['a']= user input value for 'a'
+    
+	$trujs._expressions[model] = [];   //$trujs._expressions['a'] = empty array;
+	//the above code will make the $trujs['b'] not working 
+    
+	model = document.getElementById('tr2-2-model-b').getAttribute('trujs-model').trim();      //model='b';
+    $trujs[model] = document.getElementById('tr2-2-model-b').value;                           //$trujs['b']=user input value for 'b'
+    
+	$trujs._expressions[model] = [];  //$trujs._expressions['b'] = empty array;
+});
+
+
+document.getElementById('tr2-2-button-add').addEventListener('click', function() {
+    alert($trujs['a'] + $trujs['b']);
+});
+</script>

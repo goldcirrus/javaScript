@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript in Body</h2>
+
+<p id="demo"><a href="http://xahlee.info/js/javascript_property_attributes.html">js property attributes</a></p>
+
+<script>
+// In a library
+function add(n, callback) {
+    let sum = 0;
+    for (let i = 0; i < n; i++)
+        sum += i;
+    setTimeout(function() {  // invoke callback(sum) after 5 seconds.
+        callback(sum);
+    }, 5000);
+}
+
+// In an app
+var n = prompt("Number of values: ");
+
+add(n, function(sum) {
+    alert("The sum is " + sum + ".");
+});
+
+alert("I can keep working without being blocked.");
+
+</script>
+
+</body>
+</html> 

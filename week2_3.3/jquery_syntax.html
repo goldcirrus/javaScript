@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+//document is argument passed into invoked function $(document); $(x) parameter is a string. 
+//$() is both a function and an returned jQuery object that has event methods and action methods:ready(callback), click(callback),css(p,v)
+//invoked function ready(callback); has anonymous callback function as its argument
+
+//inside callback function's definition, $('p'); is invoked, then click(callback) is invoked. 
+//its callback definition has $(this); invoked, 'this' as a DOM HTMLElement object. then function css(property,value); is invoked. 
+
+$(document).ready(function() {  // ready(callback)function: event method
+    $('p').click(function() {  // click(callback) function: event method
+        $(this).css('background-color', 'Red');  // 'this' is the 'p' clicked, css(property,value) function: action method
+    });
+});
+
+</script>
+
+</head>
+
+
+<body>
+
+
+
+<p>Syntax: TRUjQ(selector).actionorevent()</p>
+
+<p>Selectors are document, string for selection - HTML element type, id, class, no other complex selectors (not difficult to implement though)
+, this as a DOM object, i.e., HTMLElement object, HTMLElement object</p>
+
+<p>Return values from TRUjQ(selector):  Three different TRUjQ objects.  1. TRUjQ_document - from TRUjQ(document)  2. TRUjQ_htmlselector - from TRUjQ('...')    
+3. TRUjQ_htmlelement - from TRUjQ(this) or TRUjQ(HTMLElement)
+</p>
+
+<p>Event methods supported in TRUjQ objects   
+1. ready() for document (actually load on window)   2. click()   3. dblclick()
+</p>
+
+<p>Action methods supported in TRUjQ objects: 1. css()  2. attr()  3. html()  4. hide()  5. show()  6. toggle()
+</p>
+
+<p>Properties in TRUjQ.  1. version - E.g., TRUjQ.version
+</p>
+
+
+</body>
+</html>

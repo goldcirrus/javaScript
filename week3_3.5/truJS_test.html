@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html>
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>    
+    <script src="TruJS.min.js"></script>
+</head>
+
+<body>
+    <h1>TruJS - Test</h1>
+	<h1><a href=https://cs.tru.ca/~mlee/comp4620/Software/test_trujs.html>view-source:  https://cs.tru.ca/~mlee/comp4620/Software/test_trujs.html</a></h1>
+    <br>
+    <table>
+        <tr>
+            <td>
+<pre>
+&lt;span trujs-init='$trujs.b = 20'>&lt;/span>
+&lt;span trujs-init=''>$trujs.c = 30&lt;/span>
+Name 1: &lt;input type='text' trujs-model='x' value=''>&lt;/input>
+Name 2: &lt;input type='text' trujs-model='y' value='TruJS'>&lt;/input>
+Name 3: &lt;input type='text' trujs-model='z' value='Fun'>&lt;/input>
+
+Wow!
+Name 1: &lt;span trujs-bind='x'>$trujs.x&lt;/span>
+Name 2: &lt;span trujs-bind='y'>&lt;/span>
+Name 2.1: &lt;span trujs-bind=''>$trujs.y&lt;/span>
+Name 2.2: &lt;span >$trujs.y&lt;/span>
+Name 1 + Name 3: &lt;span trujs-bind='x, z'>var a = 10; $trujs.b++; a + ", " 
+    + $trujs.b + ", " + $trujs.c + ", " + $trujs.x + ", " 
+    + $trujs.z.toUpperCase()&lt;/span>
+</pre>
+            </td>
+            <td>
+                <span trujs-init='$trujs.b = 20'></span>
+                <span trujs-init=''>$trujs.c = 30</span>
+                Name 1: <input type='text' trujs-model='x' value=''></input><br>
+                Name 2: <input type='text' trujs-model='y' value='TruJS'></input><br>
+                Name 3: <input type='text' trujs-model='z' value='Fun'></input><br>
+<!--
+                <form>
+                    <input type="radio" name="gender" value="male" checked trujs-model='w'>Male<br>
+                    <input type="radio" name="gender" value="female" trujs-model='w'>Female
+                </form>
+-->
+                <br>
+                <div>
+                    Wow!<br><br>
+                    Name 1: <span trujs-bind='x'>$trujs.x</span><br> <!-- Let's consider this one as an expression to use trujs.y. -->
+                    Name 2: <span trujs-bind='y'></span><br>
+                    Name 2.1: <span trujs-bind=''>$trujs.y</span><br>
+                    Name 2.2: <span >$trujs.y</span><br>
+                    Name 1 + Name 3: <span trujs-bind='x, z'>var a = 10; $trujs.b++; a + ", " + $trujs.b + ", " + $trujs.c + ", " + $trujs.x + ", " + $trujs.z.toUpperCase()</span><br>
+<!--                    Gender: <span trujs-bind='w'></span><br>    -->
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

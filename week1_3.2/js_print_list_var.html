@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+
+<button id='tr2-button'>Click me to test the above code!</button>
+
+<script>
+function foo(lists) {
+    var fts = [];
+	
+    for (var i = 0; i < lists.length; i++) {
+        var p = lists[i];                           // what if 'let' is used instead of var? 1,2,3
+		          //p is shared by all array lists[i] elements, so p get value of last lists[i] element's value
+		
+        fts[i] = function() {
+            alert("inside function foo's local array fts[i] element: "+p);     //fts[i] is the function definition, not be executed here. fts[i] refers to function definition, it is executed when fts[i] is invoked: fts[i]();                          
+        };                 //when fts[i] is invoked as fts[i](); will print 3,3,3
+    }
+	
+    return fts;     //foo(lists) execution returns an array with each element is a function definition can access Parent function(foo)'s variable:P. 
+}
+
+
+function goo() {
+    var lists = [1, 2, 3];
+	
+    var fts_returned = foo(lists);     //Parent function is invoked here. 
+	                 //foo(lists); return an array whose array elements are child function definitions: function(){alert(p);} P is parent function's variable
+    
+	for (var i = 0; i < fts_returned.length; i++)
+        fts_returned[i]();  // child function is invoked here. What will be printed? will print 3, 3, and 3, because all array elements(child function definitions) use the same p. 
+}                  //fts[i] refers to each function(){aler(p);}, and they all share the same p. p has the last loop's value from var p = lsits[i];
+//end of function definition
+
+$('#tr2-button').click(function() { goo(); });
+
+</script>
+
+</body>
+</html> 

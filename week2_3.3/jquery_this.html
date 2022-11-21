@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  
+  $(".btn1").click(function(){
+    alert("this is "+ this);        //this is [object HTMLButtonElement]
+    alert("$(this) is"+$(this));    //$(this) is[object Object]
+  });
+  
+  $(".btn2").click(function(){
+    $(this).hide();       //will work, when this keyword is used inside $(), then it becomes a jQuery object, and now we can use all properties of jQuery on this method.
+  });
+  
+  $(".btn3").click(function(){
+    this.hide();          // will not work because we are calling a jQuery method on a DOM object(this)
+  });
+  
+  $("#clickme").click(function () {          //use this keyword on event handlers which refers to the element on which the event is called.
+            this.style.color = "green"      //will work, because the this Keyword is a reference to DOM elements of invocation. We can call all DOM methods on it. 
+        });
+		
+  $("#et").click(function () {               //will work
+            $(this).css("color", "red");    //when this keyword is used inside $(), then it becomes a jQuery object, and now we can use all properties of jQuery on this method.
+        });
+  
+  const obj = {           //create an object:obj
+            name: "hrithik",
+            roll: 36,
+            getName: function () {
+			    alert("when create an object, the this is "+this);   //this is [object Object]
+                return this.name;       //use this in an object method which refers to the owner of the object, which is the create object:obj
+            }
+        }
+   alert("execute obj's property function and the return is obj's value for name property: "+obj.getName());
+   
+  
+  
+});
+</script>
+</head>
+<body>
+
+<button class="btn1">alert HTMLElement(this), [object Object]jquery object $(this) </button> <br><br>
+<button class="btn2">Hide will work<br></button> <br><br>
+<button class="btn3">Hide will not work</button> <br><br>
+
+<p id="clickme"> <b> Click this to change color by $(this).</b> <br> </p>
+<p id="et"> click to change color by this </p>
+</body>
+</html>
