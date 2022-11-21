@@ -1,0 +1,502 @@
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'multiplication', x: '12', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=multiplication&x=12&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=addition&x=9&y=21
+inside proceed function, inside request.on(end,callback); post query is:  op=addition&x=9&y=21
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'addition', x: '9', y: '21' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=subtraction&x=9&y=21
+inside proceed function, inside request.on(end,callback); post query is:  op=subtraction&x=9&y=21
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'subtraction', x: '9', y: '21' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '12', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=12&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=addition&x=78&y=21
+inside proceed function, inside request.on(end,callback); post query is:  op=addition&x=78&y=21
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'addition', x: '78', y: '21' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'multiplication', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=multiplication&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '9', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=9&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '9', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=9&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'multiplication', x: '9', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=multiplication&x=9&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=addition&x=89&y=20
+inside proceed function, inside request.on(end,callback); post query is:  op=addition&x=89&y=20
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'addition', x: '89', y: '20' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=subtraction&x=89&y=20
+inside proceed function, inside request.on(end,callback); post query is:  op=subtraction&x=89&y=20
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'subtraction', x: '89', y: '20' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=multiplication&x=89&y=20
+inside proceed function, inside request.on(end,callback); post query is:  op=multiplication&x=89&y=20
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'multiplication', x: '89', y: '20' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=division&x=89&y=20
+inside proceed function, inside request.on(end,callback); post query is:  op=division&x=89&y=20
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'division', x: '89', y: '20' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'division', x: '9', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=division&x=9&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '8', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=8&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '8', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=8&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'multiplication', x: '8', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=multiplication&x=8&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=addition&x=10&y=207
+inside proceed function, inside request.on(end,callback); post query is:  op=addition&x=10&y=207
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'addition', x: '10', y: '207' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=subtraction&x=10&y=207
+inside proceed function, inside request.on(end,callback); post query is:  op=subtraction&x=10&y=207
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'subtraction', x: '10', y: '207' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=multiplication&x=10&y=207
+inside proceed function, inside request.on(end,callback); post query is:  op=multiplication&x=10&y=207
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'multiplication', x: '10', y: '207' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=division&x=10&y=207
+inside proceed function, inside request.on(end,callback); post query is:  op=division&x=10&y=207
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'division', x: '10', y: '207' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'multiplication', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=multiplication&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '12', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=12&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '12', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=12&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=addition&x=10&y=20
+inside proceed function, inside request.on(end,callback); post query is:  op=addition&x=10&y=20
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=subtraction&x=8&y=20
+inside proceed function, inside request.on(end,callback); post query is:  op=subtraction&x=8&y=20
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'subtraction', x: '8', y: '20' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'subtraction', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=subtraction&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'multiplication', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=multiplication&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'multiplication', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=multiplication&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '12', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=12&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function _GET is: querystring.parse(url.par...query)  [Object: null prototype] { op: 'addition', x: '10', y: '20' }
+inside proceed function, url.parse(request.url).query for get method query is:  op=addition&x=10&y=20
+pathname in proceed function sjs type after calling echoSjs() for get: //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/calculator.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  op=multiplication&x=10&y=20
+inside proceed function, inside request.on(end,callback); post query is:  op=multiplication&x=10&y=20
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] { op: 'multiplication', x: '10', y: '20' }
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/calculator.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.htm;
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=&password=
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=&password=
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: '',
+  password: ''
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=&password=
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=&password=
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: '',
+  password: ''
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=g&password=
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=g&password=
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'g',
+  password: ''
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=g&password=
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=g&password=
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'g',
+  password: ''
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=ff&password=
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=ff&password=
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'ff',
+  password: ''
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=fgf&password=
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=fgf&password=
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'fgf',
+  password: ''
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=&password=
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=&password=
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: '',
+  password: ''
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=ss&password=
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=ss&password=
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'ss',
+  password: ''
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=ss&password=sfds
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=ss&password=sfds
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'ss',
+  password: 'sfds'
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=sfdsd&password=sf
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=sfdsd&password=sf
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'sfdsd',
+  password: 'sf'
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=sf&password=45
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=sf&password=45
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'sf',
+  password: '45'
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/testview.html
+reading file content inside echoHtml function definition
+1st pathname in route() function definition url.parse(request.url).pathname:  /favicon.ico
+1st pathname in route() function definition url.parse(request.url).pathname:  /~lzhong/week6/w7_test_server.sjs
+inside proceed function, after request.on(data,callback); post query is: 
+inside proceed function, after reques.on(end,callback); post query is: 
+inside proceed function, inside reques.on(data callback); post query is:  command=join&username=sf&password=12
+inside proceed function, inside request.on(end,callback); post query is:  command=join&username=sf&password=12
+inside proceed function, _POST is querystring.parse(query): [Object: null prototype] {
+  command: 'join',
+  username: 'sf',
+  password: '12'
+}
+pathname in proceed function,for sjs type after calling echoSjs() for post pathname:  //home2/students/lzhong/public_html/week6/w7_test_server.sjs
+node:_http_outgoing:742
+    throw new ERR_INVALID_ARG_TYPE(
+    ^
+
+TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer or Uint8Array. Received type boolean (true)
+    at new NodeError (node:internal/errors:371:5)
+    at write_ (node:_http_outgoing:742:11)
+    at ServerResponse.write (node:_http_outgoing:707:15)
+    at /home2/students/lzhong/public_html/week6/router.js:69:13
+    at /home2/students/lzhong/public_html/week6/w7_test_server.sjs:12:14
+    at /home2/students/lzhong/public_html/week6/chat_model.sjs:31:14
+    at /home2/students/lzhong/public_html/week6/node_modules/mongodb/lib/utils.js:510:9
+    at /home2/students/lzhong/public_html/week6/node_modules/mongodb/lib/operations/execute_operation.js:48:55
+    at /home2/students/lzhong/public_html/week6/node_modules/mongodb/lib/utils.js:510:9
+    at completeEndSession (/home2/students/lzhong/public_html/week6/node_modules/mongodb/lib/sessions.js:147:17) {
+  code: 'ERR_INVALID_ARG_TYPE'
+}

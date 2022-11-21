@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+</head>
+
+<body>
+    Username: <input id='username-join-input' type='text' name='username'><br><br>
+    Password: <input id='password-join-input' type='password' name='password'><br><br>
+    <button id='menu-join'>Join</button>
+</body>
+</html>
+
+<script>
+    let url = "w7_test_server.sjs";
+    
+    $("#menu-join").click(function() {
+        query = {};
+        query.command = "join";
+        query.username = $("#username-join-input").val();
+        query.password = $("#password-join-input").val();
+        $.post(url, query, function(data) {
+            alert(data);
+        });
+    });
+</script>
