@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        #menu {
+            display: none;
+            position: absolute;
+            height: 25px;
+            width: 120px;
+            /*
+            border-style: solid;
+            border-width: 2px;
+            top: 100px;
+            left: 100px;
+            */
+            z-index: 999999;
+        }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	
+    <script>
+        /*
+        *   Use JavaScript and jQuery to Get User Selected Text
+        *       http://mark.koli.ch/use-javascript-and-jquery-to-get-user-selected-text
+        */
+        
+        if(!window.Kolich){
+          Kolich = {};
+        }
+
+        Kolich.Selector = {};
+        Kolich.Selector.getSelected = function(){
+          var t = '';
+          if(window.getSelection){  // non IE browsers
+            t = window.getSelection();
+          }else if(document.getSelection){
+            t = document.getSelection();
+          }else if(document.selection){
+            t = document.selection.createRange().text;
+          }
+          return t;
+        }
+
+        /* original
+        Kolich.Selector.mouseup = function(){
+          var st = Kolich.Selector.getSelected();
+          if(st!=''){
+            alert("You selected:\n"+st);
+          }
+        }
+        */
+
+        $(document).ready(function(){
+//          $(document).on("mouseup", Kolich.Selector.mouseup);   // for double click for a word selection and for text selection using mouse dragging
+            $(document).on("dblclick", eh_dblclick);  // for double click events                
+            $(document).on("click", eh_click);  // for click events
+        });
+
+        eh_dblclick = function(e)  // e: dblclick event
+        {
+            if (Kolich.Selector.getSelected() != '')
+                dblclickHandler(e);  // You need to implement this.
+        }
+
+        eh_click = function(e)  // e: click event
+        {
+            clickHandler(e);  // You need to implement this.
+        }
+
+        /*
+        *    You need to implement displayMenu() function.
+        */
+
+        function clickHandler(e)  // e: click event
+        {
+            // remove the menu 
+            // $('#menu').css('display', 'none');
+            $('#menu').hide();
+        }
+
+        function dblclickHandler(e)  // e: dblclick event
+        {
+            // display the menu
+            displayMenu(e);
+        }
+
+        function displayMenu(e)  // e: dblclick event
+        {
+            // menu position
+            var x = e.pageX + 'px';
+            var y = (e.pageY - 30) + 'px';  // a bit above
+
+            // display a menu of background color
+            $('#menu').css('top', y);
+            $('#menu').css('left', x);
+//            $('#menu').css('display', 'block');            
+            $('#menu').fadeIn('slow');
+
+            // register callback functions for yellow, red, blue, white buttons
+            $('#yellow').click(function() { colorSelected('Yellow'); });
+            $('#red').click(function() { colorSelected('Red'); });
+            $('#blue').click(function() { colorSelected('Blue'); });
+            $('#white').click(function() { colorSelected('White'); });
+        }
+
+        function colorSelected(color) 
+        {
+            // remove the menu
+            $('#menu').css('display', 'none');
+            // $('#menu').hide();
+
+            // change the color of the selected word - create a new element; append the element; remove the old element(s)
+            var selObj = Kolich.Selector.getSelected();
+            var selRange = selObj.getRangeAt(0);
+            var newElement = document.createElement("span");
+            var documentFragment = selRange.extractContents();
+            newElement.appendChild(documentFragment);
+            newElement.style.setProperty('background-color', color);
+            selRange.insertNode(newElement);
+            selObj.removeAllRanges();
+        }        
+    </script>
+</head>
+
+<body>
+    <div id='menu'>
+        <button id='yellow' style='display: inline; width: 25px; background-color: Yellow'>Y</button>
+        <button id='red' style='display: inline; width: 25px; background-color: Red'>R</button>
+        <button id='blue' style='display: inline; width: 25px; background-color: Blue'>B</button>
+        <button id='white' style='display: inline; width: 25px; background-color: White'>W</button>
+    </div>
+
+    <p>
+    If you only wanted this to work on select paragraphs, you would change the selector to p.myclass or something like that. This hinges on the fact double clicking a word highlights it in browsers. Not really sure if it's exactly how answers.com does it, to be honest.
+    </p>
+    <p>
+    In Mozilla, Safari and Opera userSelection now is a Selection object, while in Internet Explorer it's a Text Range object. This difference will remain valid for the rest of your script: Internet Explorer's Text Ranges are fundamentally different from Mozilla's Selection and W3C's Range objects, and all other code that you write will require a branch for IE and a branch for all other browsers.    </p>
+</body>
