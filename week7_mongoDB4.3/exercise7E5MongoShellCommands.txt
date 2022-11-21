@@ -1,0 +1,47 @@
+Trial E5: Exercise with MongoDB
+Connect to MongoDB using your account.
+Drop all collections if there is any.
+> show collections
+> db.collection_name.drop()
+
+Insert student records into the Students collection. Each document is like
+{
+	name: 'Robert William',
+	number: 'T00044556',
+	address: {
+		street: '900 McGill',
+		city: 'Kamloops',
+		province: 'BC'
+	},
+	phone: '(250) 377-5000',
+	major: 'COMP',
+	grades: [
+		{ course: 'COMP 1130', grade: 'A' },
+		{ course: 'COMP 3540', grade: 'A+' }
+	]
+}
+Insert at least 3 documents including the above one.
+> db.Students.insertOne(...)
+
+List all collections. 
+> show collections;
+
+With the Students collection,
+List all the documents.
+> db.Students.find();
+
+Find all the document of the students who live in BC.
+> db.Students.find({"address.province":"BC"});
+
+Find all the document of the students who has A+ or A in COMP 3540.
+> db.Students.find({$and:[{"grades.course":"COMP 3540"}, {$or:[{"grades.grade":"A"}, {"grades.grade":'A+'}]}]});
+
+Change the grade of COMP 1130 in the document in which the student number is T00044556.
+> db.Students.updateMany({"number":"T00044556", "grades.course":"COMP 1130"}, {$set: {"grades.grade": "B"}});  // It won't work.
+> db.Students.updateMany({"number":"T00044556", "grades.course":"COMP 1130"}, {$set: {"grades.$.grade": "B"}});  // $ is used for position in an array.
+
+Find the document of the student having the above student number.
+> db.Students.find({number:"T00044556"});
+
+Delete a document with a student number.
+> db.Students.deleteMany({number:"T00044556"});

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+</head>
+
+
+<h2>Calculator</h2>
+<div style='margin:20px'>
+    x = <input id='x' type='number' value='10'><br><br>
+    y = <input id='y' type='number' value='20'><br><br>
+    x + y = <span id='result-add'></span>    <button id='submit-add'>Submit</button><br><br>
+    x - y = <span id='result-sub'></span>    <button id='submit-sub'>Submit</button><br><br>
+    x * y = <span id='result-multi'></span>    <button id='submit-multi'>Submit</button><br><br>
+    x / y = <span id='result-div'></span>    <button id='submit-div'>Submit</button><br><br>
+</div>
+
+<script>
+    let query = {};
+    $('#submit-add').click(function() {
+        query['op'] = 'addition';
+        query['x'] = $('#x').val();
+        query['y'] = $('#y').val();
+        let str = JSON.stringify(query);  // to JSON string
+        alert("JSON string - " + str);
+        let obj = JSON.parse(str);  // to object
+        alert("op - " + obj);
+    });
+</script>

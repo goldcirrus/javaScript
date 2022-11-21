@@ -1,0 +1,28 @@
+db    // List the current working database
+
+use mydb    // Change the current working database; db represents the current working database
+
+help
+
+show collections    // Show all the collections in db
+
+j = { name: 'mongo' }
+k = { x: 3, y: j.name }    // j.name?
+db.testData.insertOne(j)    // A collection, testData, will be created if it doest not exist
+db.testData.insertOne(j)    // The same document again?
+db.testData.insertOne(k)
+db.testData.insertOne({course: "COMP4620"})
+
+db.testData.find()
+
+show collections
+
+exit
+
+https://docs.mongodb.com/v4.2/reference/operator/query/#query-selectors
+
+https://docs.mongodb.com/v4.2/reference/method/
+
+http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html#a-basic-introduction-to-mongo-db
+
+http://mongodb.github.io/node-mongodb-native/api-articles/nodekoarticle1.html#mongo-db-and-collections

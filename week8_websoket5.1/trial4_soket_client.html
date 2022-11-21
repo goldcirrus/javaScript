@@ -1,0 +1,46 @@
+<button id="connect1">Connect</button><br>
+<input id='input1'>
+<button id='send1'>Send</button>
+<div id='display1'>The message from the server here.</div>
+
+
+
+<script>
+    /*add event listeners to html elements.*/
+	                                                                            //$('#connect1').click(function(){connect();});
+	document.getElementById('connect1').addEventListener('click', connect);    //no need to do function(){connect();}
+    document.getElementById('send1').addEventListener('click', echo);          
+                                                                              //document.getElementById('end').addEventListener('click', end);
+		
+    var ws;
+	
+    function connect() {
+        if ("WebSocket" in window) {
+            ws = new WebSocket("ws://cs.tru.ca:8080/~mlee/comp4620/Software/TRUWSJS/rev.4/test_ws_echo_server.wsjs"); 
+
+            // register event listeners
+            ws.onopen = function() {  // 'open' event listener; when the channel is open
+                document.getElementById('display1').innerHTML = 'Connected';
+            };
+            ws.onmessage = function (eobj) {  // when a message came from the server, display this message
+                document.getElementById('display1').innerHTML = eobj.data;             //.value is only for <input>  .innerHTML for other html elements
+				alert("received message from server: "+eobj.data);
+            };
+            ws.onclose = function() {  // when the channel is closed 
+                document.getElementById('display1').innerHTML = 'Closed';
+            };
+            ws.onerror = function() {  // when there is an error
+                document.getElementById('display1').innerHTML = 'error happens';
+            };
+        }
+    }
+            
+    function echo() {
+        //?????
+        ws.send(document.getElementById('input1').val());  // client sends a message(val() in form's input) to the server
+    }
+            
+    function end() {
+        ws.close();  // close the channel
+    }
+</script>

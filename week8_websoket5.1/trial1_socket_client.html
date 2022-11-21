@@ -1,0 +1,66 @@
+
+<button id='connect'>Connect</button><br>
+<input id='input'>
+<button id='send'>Send</button>
+
+<button id='end'>end connection</button>
+
+<div id='display'>The message from the server here.</div>
+
+<br>
+<br>
+https://github.com/websockets/ws <br>
+https://www.npmjs.com/package/nodejs-websocket <br>
+https://github.com/websockets/ws <br>
+https://github.com/socketio/socket.io <br>
+<p> <a href='https://github.com/websockets/ws'> github for ws socket https://github.com/websockets/ws</a> </p>
+
+<script>
+/*add event listeners to html elements.*/
+    document.getElementById('connect').addEventListener('click', connect);    //no need to do function(){connect();}
+    document.getElementById('send').addEventListener('click', echo);          
+    document.getElementById('end').addEventListener('click', end);
+	
+//or  $('#connect').click(function(){connect();});
+//or  $('#send').click(function(){echo();});
+	
+	var ws;                                                                    //global variable can be used by all functions
+
+    function connect() {
+        if ("WebSocket" in window) {
+            ws = new WebSocket("ws://cs.tru.ca:8057");           //socket send to cs.tru.ca port 8057
+
+            // register event listeners 
+            ws.onopen = function() {  // 'open' event listener; when the channel is open                
+                document.getElementById('display').innerHTML = 'Connected';
+                
+            };
+			
+            ws.onmessage = function (eobj) {  // when a message came from the server
+                document.getElementById('display').innerHTML = eobj.data;             //.value is only for <input>  .innerHTML for other html elements
+				alert("received message from server: "+eobj.data);
+            };
+			
+            ws.onclose = function() {  // when the channel is closed 
+                document.getElementById('display').innerHTML = 'Closed';
+            };
+			
+            ws.onerror = function() {  // when there is an error
+                document.getElementById('display').innerHTML = 'error';
+				alert('error');
+            };
+        }
+    }
+            
+    function echo() {
+        ws.send(document.getElementById('input').value);  // client first sends a message to the server 
+   //or ws.send( $('#input').val() );		
+        alert("send button is clicked at client");
+    }
+	
+	function end() {
+        ws.close();  // close the channel
+    }
+            
+    
+</script>
